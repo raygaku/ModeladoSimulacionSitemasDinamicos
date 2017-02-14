@@ -35,15 +35,16 @@ gcapp.controller('main', ['$scope', function($scope){
     var m = parseFloat($scope.valores.m);
     var xn = 0;
     $scope.tablaLlena = [];
-    $scope.tablaDatos= {n: '', x0 : '', xn: '', numero: ''};
+    $scope.tablaDatos= {n: '', x0 : '', operacion:'', xn: '', numero: '', m: m};
     for(i = 1 ; i <= $scope.valores.m; i++)
     {
-      $scope.tablaDatos= {n: '', x0 : '', xn: '', numero: ''};
+      $scope.tablaDatos= {n: '', x0 : '', operacion:'', xn: '', numero: '', m:m};
       $scope.tablaDatos.n = i;
       $scope.tablaDatos.x0 = x0;
       xn = (a * x0 + c) % m;
       $scope.tablaDatos.xn = xn;
       $scope.tablaDatos.numero = parseFloat(xn/m);
+      $scope.tablaDatos.operacion = parseInt((a * x0 + c) / m );  
       x0 = xn;
       $scope.tablaLlena.push($scope.tablaDatos);  
     }

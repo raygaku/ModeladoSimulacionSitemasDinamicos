@@ -68,6 +68,7 @@
     <tr>
       <td>n</td>
       <td>x0</td>
+      <td>(ax0 + c) mod m</td>
       <td>xn + 1</td>
       <td>Números rectangulares</td>
     </tr>
@@ -75,8 +76,9 @@
     <tr ng-repeat="fila in tablaLlena">
       <td>{{fila.n}}</td>
       <td>{{fila.x0}}</td>
+      <td>{{fila.operacion}} + {{fila.xn}} / {{fila.m}}</td>
       <td>{{fila.xn}}</td>
-      <td>{{fila.numero}}</td>
+      <td> {{fila.xn}} / {{fila.m}} = {{fila.numero}}</td>
     </tr>
 
   </table>

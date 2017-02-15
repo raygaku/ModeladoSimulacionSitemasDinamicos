@@ -32,7 +32,29 @@ gcapp.controller('main', ['$scope', function($scope){
     var xn = 0;
     $scope.tablaLlena = [];
     $scope.tablaDatos= {n: '', x0 : '', operacion:'', xn: '', numero: '', m: m};
-    for(i = 1 ; i <= $scope.valores.m; i++)
+    var exponente_binario = Math.log(m) / Math.log(2);
+    var exponente_decimal = Math.log(m) / Math.log(10);
+    var pe = 0;
+    if (exponente_binario % 1 === 0 )
+    {
+      console.log("Es binario");
+      pe = m/4;
+    }
+    else
+    {
+      if(exponente_decimal >= 5)
+      {
+        pe = 5 * Math.pow(10,exponente_decimal - 2);
+      } 
+      else
+      {
+      pe = Math.pow(5, exponente_decimal - 1) * 4;
+      }
+      console.log("Es decimal");
+    }
+
+    $scope.pe = pe; 
+    for(i = 1 ; i <= pe; i++)
     {
       $scope.tablaDatos= {n: '', x0 : '', operacion:'', xn: '', numero: '', m:m};
       $scope.tablaDatos.n = i;
@@ -49,7 +71,7 @@ gcapp.controller('main', ['$scope', function($scope){
       }
     }
 
-    if($scope.tablaLlena[m-1].xn != $scope.valores.x0)
+    if($scope.tablaLlena[pe-1].xn != $scope.valores.x0)
     {
       $scope.noconfiable = 1;
       $scope.confiable = 0;

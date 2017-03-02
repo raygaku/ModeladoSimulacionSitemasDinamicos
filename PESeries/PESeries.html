@@ -31,22 +31,15 @@
 
       for(var i = 0; i < lista.length - 1; i++)
       {
-        if(i != lista.length - 1)
-        {
+
           cons = [];
           cons.push(lista[i]);
           cons.push(lista[i+1]);
           listaParejas.push(cons);
-        }
-        else
-        {
-          cons = [];
-          cons.push(lista[lista.length - 1]);
-          cons.push(lista[0]);
-          listaParejas.push(cons);
-        }
+
       }
 
+      console.log("Parejas");
       console.log(listaParejas);
 
 
@@ -58,10 +51,11 @@
 
       for(var i = 0; i < n; i++)
       {
-        laux = [];
         intervaloi = parseFloat( (i+1) / n );
         for(var j = 0; j < n; j++)
         {
+          laux = []
+
           intervaloj = parseFloat( (j+1) / n );
           console.log("Cordenadas " + intervaloi + " " + intervaloj);
           listaParejas.forEach(function(a){
@@ -69,20 +63,49 @@
 
             if((a[0] > parseFloat(i/n) && a[1] > parseFloat(j/n)) && (a[0] < intervaloi && a[1] < intervaloj) )
             {
-              if(a.length > 0)
-              {
-                console.log(a);
-              }
+
+              laux.push(a)
+              console.log(a);
 
             }
 
           });
+          plano.push(laux)
+
         }
-        plano.push(laux);
 
       }
 
-console.log(laux);
+console.log("plano");
+console.log(plano);
+
+var feo = []
+
+plano.forEach(function(a)
+{
+  feo.push(a.length);
+});
+
+var fei = 0.0;
+fei = parseFloat((lista.length - 1) / Math.pow(n,2))
+console.log("FEi ", fei);
+console.log("FEo " ,    feo);
+
+var x20 = 0.0;
+var sum = 0.0;
+
+for(var i = 0; i < feo.length ; i++)
+{
+  sum += parseFloat( Math.pow( feo[i] - fei ,2) );
+}
+
+var pre = 0.0;
+pre = ( Math.pow(n , 2) / (lista.length - 1) ).toFixed(5)
+console.log("El prefijo es " ,pre);
+console.log("La suma es ", sum);
+x20 = pre * sum;
+console.log("x20 " , x20);
+
     </script>
   </head>
   <body>

@@ -23,8 +23,66 @@
       0.07586, 0.66559, 0.45476, 0.22596, 0.93413, 0.20405, 0.84617, 0.14014]
 
       var npruebas = [0.25163, 0.65251, 0.36815, 0.64397, 0.04515, 0.83761, 0.14387, 0.51321, 0.72472, 0.05466];
+      var n = 2;
+      var lista  = npruebas;
 
-      
+      var listaParejas = [];
+      var cons = [];
+
+      for(var i = 0; i < lista.length - 1; i++)
+      {
+        if(i != lista.length - 1)
+        {
+          cons = [];
+          cons.push(lista[i]);
+          cons.push(lista[i+1]);
+          listaParejas.push(cons);
+        }
+        else
+        {
+          cons = [];
+          cons.push(lista[lista.length - 1]);
+          cons.push(lista[0]);
+          listaParejas.push(cons);
+        }
+      }
+
+      console.log(listaParejas);
+
+
+
+      var intervaloi = 0.0;
+      var intervaloj = 0.0;
+      var laux = [];
+      var plano = [];
+
+      for(var i = 0; i < n; i++)
+      {
+        laux = [];
+        intervaloi = parseFloat( (i+1) / n );
+        for(var j = 0; j < n; j++)
+        {
+          intervaloj = parseFloat( (j+1) / n );
+          console.log("Cordenadas " + intervaloi + " " + intervaloj);
+          listaParejas.forEach(function(a){
+
+
+            if((a[0] > parseFloat(i/n) && a[1] > parseFloat(j/n)) && (a[0] < intervaloi && a[1] < intervaloj) )
+            {
+              if(a.length > 0)
+              {
+                console.log(a);
+              }
+
+            }
+
+          });
+        }
+        plano.push(laux);
+
+      }
+
+console.log(laux);
     </script>
   </head>
   <body>

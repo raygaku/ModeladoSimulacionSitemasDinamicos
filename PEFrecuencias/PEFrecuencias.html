@@ -3,11 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
-</head>
-<body>
-  
-
-
   <script>
 //var numeros1 = [0.57260, 0.99382, 0.47744, 0.48893, 0.16993, 0.15021, 0.33295, 0.37509, 0.82162, 0.67946]
 //var numeros2 = [0.63267, 0.47641, 0.41576, 0.48257, 0.51080, 0.28316, 0.14736, 0.07586, 0.66559, 0.45476, 0.22596, 0.93413, 0.20405, 0.84617,
@@ -27,27 +22,25 @@
 //0.67312, 0.01119, 0.99005, 0.81759, 0.85558, 0.25983, 0.96318, 0.56736, 0.31900 ,0.90561,
 //0.64345,0.31855, 0.34513, 0.99893, 0.55866, 0.63267, 0.47641, 0.41575, 0.48257, 0.51080, 0.28316, 0.14736,
 //0.07586, 0.66559, 0.45476, 0.22596, 0.93413, 0.20405, 0.84617, 0.14014] 
-var suma = 0;
 
+var npruebas = [0.25163, 0.65251, 0.36815, 0.64397, 0.04515, 0.83761, 0.14387, 0.51321, 0.72472, 0.05466];
+var n = 4;
 
-for (i = 0; i < numeros.length ; i++)
+var fei = [];
+var feo = [];
+
+for(var i = 0; i < n; i++)
 {
-  suma += numeros[i];
+  for(var j = 0; j< npruebas.lenght; j++)
+  {
 
-}   
+  }
+}
 
-var promedio = suma / numeros.length;
-console.log("Ex " + suma);
-
-console.log("x " + promedio)
-
-var zo = (promedio - 0.5)* Math.sqrt(numeros.length);
-console.log("Numerador z0 " + zo)
-zo = zo / Math.sqrt(parseFloat(1/12));
-zo = Math.abs(zo);
-
-console.log("Zo =  "  + zo);
 
   </script>
+</head>
+<body>
+  
 </body>
 </html>

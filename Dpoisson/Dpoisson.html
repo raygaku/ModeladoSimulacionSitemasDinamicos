@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DPoisson</title>
+	<script src="../node_modules/angular/angular.js"></script>
+	<script src="Dpoisson.js"></script>
+	<style>
+    table{
+        border: black 1px solid;
+    }
+    td{
+        border: black 1px solid;
+    }   
+
+    tr{
+        border: black 1px solid;
+    }
+  	</style>
+</head>
+<body ng-app="app" ng-controller="controller">
+	<table>
+		<tr>
+			<td>x</td>
+			<td>f(xi)</td>
+			<td>F(xi)</td>
+		</tr>
+
+		<tr ng-repeat="f in tabla track by $index">
+			<td>{{f.x}}</td>
+			<td>{{f.ufxi}}</td>
+			<td>{{f.mfxi}}</td>
+		</tr>
+	</table>
+</body>
+</html>

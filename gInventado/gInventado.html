@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>G. Inventado</title>
+  <title></title>
   <script src="../node_modules/angular/angular.js"></script>
   <script src="gInventado.js"></script>
-
   <style>
     table{
         border: black 1px solid;
@@ -19,72 +18,27 @@
     }
   </style>
 </head>
-<body ng-app="gcin" ng-controller="main">
-  <table>
-    <tr>
-      <td>
-         <label for="">a: </label>
-      </td>
-        <td>
-         <input type="number"  ng-model="valores.a">
-        </td>
-    </tr>
-    <tr>
-      <td>
-         <label for="">x0: </label>
-      </td>
-        <td>
-         <input type="number" ng-model="valores.x0">
-        </td>
-    </tr>
-    <tr>
-      <td>
-         <label for="">c: </label>
-      </td>
-        <td>
-         <input type="number" ng-model="valores.c">
-        </td>
-    </tr>
-    <tr>
-      <td>
-         <label for="">m: </label>
-      </td>
-        <td>
-         <input type="number" ng-model="valores.m">
-        </td>
-    </tr>
-    <tr>
-      <td>
-         <label for="">Submit: </label>
-      </td>
-        <td>
-         <input type="BUTTON" ng-click="enviarvalores()" value="Enviar">
-        </td>
-    </tr>
-  </table>
-
-  <h2>Tabla de resultados</h2>
-  <table>
-    <tr>
-      <td>n</td>
-      <td>x0</td>
-      <td>(ax0 / c) mod m</td>
-      <td>xn + 1</td>
-      <td>Números rectangulares</td>
-    </tr>
-
-    <tr ng-repeat="fila in tablaLlena">
-      <td>{{fila.n}}</td>
-      <td>{{fila.x0}}</td>
-      <td>{{fila.operacion}} + {{fila.xn}} / {{fila.m}}</td>
-      <td>{{fila.xn}}</td>
-      <td> {{fila.xn}} / {{fila.m}} = {{fila.numero}}</td>
-    </tr>
-
-  </table>
-  <h3 ng-if="confiable">Por lo tanto, Generador congruencial mixto  confiable</h3>
-  <h3 ng-if="noconfiable">Por lo tanto, Generador congruencial mixto no  confiable</h3>
-  </body>
-
-  </html>
- 
+<body ng-app="app" ng-controller="main">
+ <table>
+ <tr>
+   <td>Números a generar</td>
+   <td><input type="TEXT" ng-model="dataEnter.numerosaGenerar"></td>
+ </tr>
+ <tr>
+   <td></td>
+   <td><button ng-click="generar()">Generar</button></td>
+ </tr>
+ </table>
+ <h1>Resultados</h1>
+ <table>
+   <tr>
+     <td>i</td>
+     <td>Numero</td>
+   </tr>
+   <tr ng-repeat="renglon in tabla track by renglon.i">
+     <td>{{renglon.i}}</td>
+     <td>{{renglon.numero}}</td>
+   </tr>
+ </table>
+</body>
+</html>

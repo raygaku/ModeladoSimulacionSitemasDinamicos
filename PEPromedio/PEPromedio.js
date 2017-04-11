@@ -50,11 +50,11 @@ angular.module('app',[]).controller('main', ['$scope', function($scope){
   {
     if($scope.zcero < $scope.zintroducida.z)
     {
-      $scope.resultadoFinal = "Los números son aceptados";
+      $scope.resultadoFinal = "Por lo tanto, Los números son aceptados";
     }
     else
     {
-      $scope.resultadoFinal = "Los números no son aceptados";
+      $scope.resultadoFinal = "Por lo tanto, Los números no son aceptados";
     }
     $scope.habilitarResultado = true;
   }

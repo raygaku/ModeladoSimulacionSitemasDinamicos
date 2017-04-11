@@ -42,6 +42,7 @@
      <td>i</td>
      <td>xi</td>
      <td>F(xi)</td>
+     <td>Dn MAX|F(xi) - xi|</td>
    </tr>
    <tr ng-repeat="renglon in tabla1">
      <td>{{renglon.i}}</td>
@@ -50,5 +51,31 @@
      <td>{{renglon.fxi}} - {{renglon.xi}} = {{renglon.dn}}</td>
    </tr>
  </table>
+
+ <div ng-if="habilitarDalfa">
+  <p>Por favor introduzca D{{dataS.alfa}}%, {{dataS.numeros}}</p>
+  <input type="text" ng-model="dalfa.d">
+  <button ng-click="obtenerResultado()">Enviar</button>
+ </div>
+
+ <div ng-if="habilitarResultado">
+   <p>El Dn fue {{dnmax}}</p>
+  <table>
+    <tr>
+      <td>Dn < D{{dataS.alfa}}, {{dataS.numeros}}</td>
+    </tr>
+    <tr> 
+      <td>{{dnmax}} < {{dalfa.d}} </td>
+    </tr>
+    <tr>
+      <td>{{ dnmax < dalfa.d }}</td>
+    </tr>
+    <tr>
+      <td>{{resultadoFinal}}</td>
+    </tr>
+  </table>
+ </div>
+
+
 </body>
 </html>

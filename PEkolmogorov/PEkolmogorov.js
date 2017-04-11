@@ -1,6 +1,8 @@
 angular.module('app',[]).controller('main',['$scope',function($scope){
-
+  $scope.habilitarResultado = false;
+  $scope.habilitarDalfa = false;
   $scope.dataS = {numeros:'', alfa:''};
+  $scope.dalfa = {d:''};
   function getRandom(min,max){
     return parseFloat((Math.random() * (max - min) + min).toFixed(5));
   }
@@ -45,6 +47,24 @@ angular.module('app',[]).controller('main',['$scope',function($scope){
       $scope.tabla1.push($scope.renglont1)
     }
 
+    $scope.habilitarDalfa = true;
+
+    $scope.obtenerResultado = function()
+    {
+      $scope.dnmax = Math.max(...dn);
+      console.log($scope.dalfa);
+      if($scope.dnmax < $scope.dalfa.d)
+      {
+        $scope.resultadoFinal = "Por lo tanto, Los números son aceptados";
+      }
+      else{
+        $scope.resultadoFinal = "Por lo tanto, Los números no son aceptados";
+      }
+
+      $scope.habilitarResultado = true;
+
+    }
+    
     console.log("Dn: " + dn);
     console.log("El máximo es: " + Math.max(...dn));
   }

@@ -46,7 +46,6 @@ angular.module('app',[]).controller('main',['$scope', function($scope){
         {
           laux = []
           intervaloj = parseFloat( (j+1) / n );
-          console.log("inter", $scope.inter)
           console.log("Cordenadas " + intervaloi + " " + intervaloj);
           listaParejas.forEach(function(a){
 
@@ -66,6 +65,22 @@ angular.module('app',[]).controller('main',['$scope', function($scope){
 
       }
 
+      //Trabajando en los intervalos
+      $scope.tablaInterv = [];
+      $scope.interv = {x:'', y:''};
+      var valoresi = []
+      for(var  i = 0; i < n; i++)
+      {
+        for(var j= 0; j < n; j++)
+        {
+          $scope.intervToString = (i + 1)/2 + " , " + (j+1)/2;
+          $scope.interv.x = i;
+          $scope.interv.y = j;
+          $scope.tablaInterv.push($scope.intervToString)
+        }
+      }
+
+console.log("tablaInterv", $scope.tablaInterv)
 
 console.log("plano");
 console.log(plano);
@@ -81,7 +96,7 @@ var fei = 0.0;
 fei = parseFloat((lista.length - 1) / Math.pow(n,2))
 console.log("FEi ", fei);
 console.log("FEo " ,    feo);
-
+$scope.listaFeo = feo;
 var x20 = 0.0;
 var sum = 0.0;
 

@@ -2,7 +2,7 @@ var app = angular.module('app',[])
 app.controller('main', ['$scope', function($scope){
   
   function getRandom(min,max){
-    return Math.random() * (max - min) + min;
+    return parseFloat((Math.random() * (max - min) + min).toFixed(5));
   }
   
   $scope.tabla = [];

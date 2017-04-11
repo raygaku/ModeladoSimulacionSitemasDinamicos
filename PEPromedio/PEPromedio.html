@@ -42,8 +42,25 @@
       <td> {{n.numero}}</td>
     </tr>
   </table>
-  <div>
+  <div ng-if="habilitarPregunta">
+  <p>El valor de z0 es {{zcero}}</p>
     <p>Por favor ingrese valor de Z{{zalfa}}</p>
+    <input type="text" ng-model="zintroducida.z">
+    <button ng-click="obtenerResultado()">Enviar</button>
+  </div>
+  <h1>Resultados</h1>
+  <div ng-if="habilitarResultado">
+   <table>
+     <tr>
+       <td><p>Zo < Z{{zalfa}}</p></td>
+       <td>{{zcero < zintroducida.z}}</td>
+     </tr>
+     <tr>
+       <td><p> {{zcero}} < {{zintroducida.z}} </p></td>
+       <td>{{zcero < zintroducida.z}}</td>
+     </tr>
+   </table>
+    <p>{{resultadoFinal}}</p>
   </div>
 </body>
 </html>

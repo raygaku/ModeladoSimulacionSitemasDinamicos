@@ -1,13 +1,16 @@
 angular.module('app',[]).controller('main', ['$scope', function($scope){
 
+  $scope.habilitarPregunta = false;
+  $scope.habilitarResultado = false;
   $scope.dataRecibida = {numeros:'', alfa:''}
+  $scope.zintroducida = {z:''}
   function getRandom(min,max){
     return parseFloat((Math.random() * (max - min) + min).toFixed(5));
   }
 
   $scope.ejecutar = function()
   {
-    $scope.zalfa = parseFloat(    ) 
+    $scope.zalfa = parseFloat( (((100 - $scope.dataRecibida.alfa)/100)/2).toFixed(5)   ) 
     $scope.tablaNG = []
     $scope.numerosG = {numero:''}
     console.log($scope.dataRecibida)
@@ -39,5 +42,20 @@ angular.module('app',[]).controller('main', ['$scope', function($scope){
     zo = zo / Math.sqrt(parseFloat(1/12));
     zo = Math.abs(zo);
     console.log("Zo =  "  + zo);
+    $scope.habilitarPregunta = true;
+    $scope.zcero = parseFloat(zo.toFixed(5));
+  }
+
+  $scope.obtenerResultado = function()
+  {
+    if($scope.zcero < $scope.zintroducida.z)
+    {
+      $scope.resultadoFinal = "Los números son aceptados";
+    }
+    else
+    {
+      $scope.resultadoFinal = "Los números no son aceptados";
+    }
+    $scope.habilitarResultado = true;
   }
 }]);

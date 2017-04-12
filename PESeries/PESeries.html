@@ -54,20 +54,56 @@
       <td >{{v}}</td>
     </tr>
   </table>
+<!--
   <table>
     <tr ng-repeat="r in tabla track by $index">
       <td>{{r.cordx}}</td>
       <td>{{r.cordy}}</td>
       <td>{{r.punto}}</td>
     </tr>
-  </table>
+  </table> -->
   <table>
     <tr>
       <td>Intervalos</td>
     </tr>
-    <tr ng-repeat="int in tablaInterv track by $index">
-      <td>{{int}}</td>
+    <tr >
+      <td ng-repeat="int in tablaInterv track by $index">{{int}}</td>
+    </tr>
+    <tr>
+     <td ng-repeat="v in listaFeo track by $index"> {{v}} </td>      
     </tr>
   </table>
+
+  <div ng-if="habilitarCaptura">
+     <p>El valor de X <span style="vertical-align:super">2</span>
+     <span style="vertical-align:sub">0</span> {{x20Final}}</p>  
+     <p>Ingresar X<span style="vertical-align:super">2</span>
+     <span style="vertical-align:sub">{{dataS.alfa/100}}, {{dataS.n*dataS.n - 1}} </span>
+     </p>
+     <input type="TEXT" ng-model="uenter.x20"> <button ng-click="obtenerResultado()">Enviar</button>
+
+  </div>
+
+  <div ng-if="habilitarResultado">
+   <table>
+     <tr>
+       <td>Resultados</td>
+     </tr>
+     <tr>
+       <td> <p>X <span style="vertical-align:super">2</span>
+     <span style="vertical-align:sub">0</span> < X<span style="vertical-align:super">2</span>
+     <span style="vertical-align:sub">{{dataS.alfa/100}}, {{dataS.n*dataS.n - 1}} </p></td>
+      
+     </tr>
+     <tr>
+       <td>{{x20Final}} < {{uenter.x20}}  {{x20Final < uenter.x20}} </td>
+     </tr>
+     <tr>
+       <td>
+    {{resultadoFinal}} 
+       </td>
+     </tr>
+   </table>  
+  </div>
   </body>
 </html>

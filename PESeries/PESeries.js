@@ -1,11 +1,14 @@
 angular.module('app',[]).controller('main',['$scope', function($scope){
+      $scope.habilitarResultado = false;
+      $scope.habilitarCaptura = false;
+      $scope.uenter = {x20:''};
       $scope.dataS = {numeros:'', alfa:'', n:''};
       function getRandom(min,max){
         return parseFloat((Math.random() * (max - min) + min).toFixed(5));
       }
       $scope.ejecutar = function()
       {
-      
+      $scope.habilitarCaptura = true;
       var n = $scope.dataS.n;
       var lista  = [];
 
@@ -111,6 +114,19 @@ console.log("El prefijo es " ,pre);
 console.log("La suma es ", sum);
 x20 = pre * sum;
 console.log("x20 " , x20);
-
+$scope.x20Final = x20;
       }
+
+$scope.obtenerResultado = function()
+{
+  console.log($scope.uenter);
+  $scope.habilitarResultado = true;
+  if($scope.x20Final < $scope.uenter.x20)
+  {
+    $scope.resultadoFinal = "Por lo tanto, los números son aceptados";
+  }
+  else{
+    $scope.resultadoFinal = "Por lo tanto, los números no son aceptados";
+  }
+}
 }]);

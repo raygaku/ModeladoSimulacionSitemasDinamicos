@@ -5,6 +5,18 @@
 	<title>DUniforme</title>
   <script src="../node_modules/angular/angular.js"></script>
   <script src="Duniforme.js"></script>
+  <style>
+    table{
+        border: black 1px solid;
+    }
+    td{
+        border: black 1px solid;
+    }   
+
+    tr{
+        border: black 1px solid;
+    }
+   </style>
 </head>
 <body ng-app="app" ng-controller="main">
   <table>
@@ -23,6 +35,32 @@
     <tr>
       <td><button ng-click="ejecutar()">Enviar</button></td>
     </tr>
-  </table>  
+  </table> 
+ <table>
+  <tr>
+    <td>Números generados</td>
+  </tr>
+  <tr ng-repeat="numero in listaNg track by $index">
+    <td>{{$index + 1}}, {{numero}}</td>
+  </tr>
+ </table>
+ <table>
+   <tr>
+     <td>Tiempos por numero</td>
+   </tr>
+   <tr ng-repeat="numero in listaTs track by $index">
+     <td>Tiempo {{$index + 1}},  {{numero}}</td>
+   </tr>
+ </table>
+ <table>
+   <tr>
+     <td>Tiempo total</td>
+     <td>{{valorTtoc }}</td>
+   </tr>
+   <tr>
+     <td>Tiempo Promedio</td>
+     <td>{{valorTpac }}</td>
+   </tr>
+ </table>
 </body>
 </html>

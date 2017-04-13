@@ -43,11 +43,11 @@ angular.module('app', [])
 	0.61773, 0.12202, 0.20717, 0.47619, 0.67312, 0.01119, 0.99005, 0.81759, 0.85558];
 	var ejemplo = [0.89504, 0.98957, 0.99871, 0.99952, 0.99997];
 
-	var l = ejemplo;
-    var vlambda = 5;
+	var l = numeros8;
+    var vlambda = 45;
     var sumF = 0.0;
     $scope.tabla = [];
-    
+    var sumatorias = [];
     var fxi = 0;
     var i = 0;
 
@@ -57,22 +57,34 @@ angular.module('app', [])
     	$scope.fila = {x: '', ufxi : '' , mfxi: ''};
 
         fxi = ( Math.pow(2.718281829, -1*vlambda) * Math.pow(vlambda, i) ) / factorial(i) ;
+       	sumatorias.push(sumF);
         sumF += fxi;
         $scope.fila.x = i;
-        $scope.fila.ufxi = fxi;
-        $scope.fila.mfxi = sumF;
-       /*
-        console.log("x = ", i);
-        console.log("fxi = ", fxi);
-        console.log("Fxi = ", sumF );
-        */
-        console.log($scope.fila)
+        $scope.fila.ufxi = fxi.toExponential();
+        $scope.fila.mfxi = sumF.toExponential();
         $scope.tabla.push($scope.fila)
         i++;
         if (sumF > 0.99995){
+        	sumatorias.push(1.0)
         	break;
         } 
     }
+    $scope.condiciones = [];
+
+    $scope.demanda = 0;
+    for (var i = 0; i < sumatorias.length  ; i++) {
+        console.log("Si R >", sumatorias[i], "y <" , sumatorias[i+1], " entonces x = ", i)
+    	l.forEach( function(v) {
+    		if(v > sumatorias[i] && v < sumatorias[i+1]){
+    			$scope.condicion = {condicion:''}
+    			$scope.condicion.condicion = "Valor " + v + " entre " + sumatorias[i].toFixed(5) + " y "  + sumatorias[i+1].toFixed(5) + " se asigna " + i
+    			$scope.condiciones.push($scope.condicion);
+    			$scope.demanda += i;
+    		}
+    	});
+    }
+
+    console.log(l)
 
 }]);
 

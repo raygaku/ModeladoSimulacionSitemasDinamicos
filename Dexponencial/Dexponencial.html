@@ -31,6 +31,7 @@
     </tr>
     <tr>
       <td><button ng-click="ejecutar()" >Enviar</button></td>
+      <td><button onclick="location.reload()">Limpiar</button></td>
     </tr>
   </table>
 
@@ -39,7 +40,7 @@
     <tr>
       <td>Números generados</td>
     </tr>
-    <tr ng-repeat="numero in numerosGenerados">
+    <tr ng-repeat="numero in numerosGenerados track by $index">
       <td>{{$index + 1}}</td>
       <td>{{numero}}</td>
     </tr>
@@ -49,7 +50,7 @@
     <tr>
       <td>Tiempos por número</td>
     </tr>
-    <tr ng-repeat="num in listaTS ">
+    <tr ng-repeat="num in listaTS track by $index">
       <td> Tiempo {{$index + 1}}</td>
       <td>{{num}}</td>
     </tr>

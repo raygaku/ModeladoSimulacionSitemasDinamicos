@@ -7,6 +7,22 @@
   <script src="Duniforme.js"></script>
 </head>
 <body ng-app="app" ng-controller="main">
-	
+  <table>
+    <tr>
+      <td>Cantidad de numeros</td>
+      <td><input type="TEXT" ng-model="dataS.n"></td>
+    </tr>
+    <tr>
+      <td>A</td>
+      <td><input type="TEXT" ng-model="dataS.a"></td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td><input type="TEXT" ng-model="dataS.b"></td>
+    </tr>
+    <tr>
+      <td><button ng-click="ejecutar()">Enviar</button></td>
+    </tr>
+  </table>  
 </body>
 </html>

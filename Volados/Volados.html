@@ -7,8 +7,10 @@
     <title>Volados</title>
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/sweetalert/dist/sweetalert.css">
     <script src="Volados.js"></script>
 </head>
 <body ng-app="app" ng-controller="main">
@@ -21,8 +23,13 @@
         <li class="active"><a href="#">Cantidad Inicial ${{cantidadInicial}}</a></li> 
         <li class="active"><a href="#">Meta ${{meta}}</a></li> 
         <li class="active"><a href="#">Apuesta ${{apuesta}}</a></li>
+        <li class="active" ng-if="tipoCorrida == 1"><a href="#">Tipo de Corrida: Por Número de Corrida</a></li>
+         <li class="active" ng-if="tipoCorrida == 1"><a href="#">Corridas: {{numeroCorridas}} </a></li>
+        <li class="active" ng-if="tipoCorrida == 2"><a href="#">Tipo de Corrida: Por Números Aleatorios</a></li>
+        <li class="active" ng-if="tipoCorrida == 2"><a href="#">Números a generar: {{numerosAleatorios}}</a></li>
       </ul> 
-        <button type="button" class="btn btn-success navbar-btn navbar-right" data-toggle="modal" data-target="#myModal">Cambiar Variables</button> 
+         <button type="button" class="btn btn-danger navbar-btn navbar-right" ng-click="iniciarSimulacion()" >Inicial Simulación</button>
+        <button type="button" class="btn btn-info navbar-btn navbar-right" data-toggle="modal" data-target="#myModal">Cambiar Variables</button> 
     </div>
  </nav>
 
@@ -36,13 +43,31 @@
         <h4 class="modal-title">Cambiar variables</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <div class="form-group">
+          <label for="">Cantidad Inicial:</label>
+          <input type="text" class="form-control"  placeholder="00.00" ng-model="configuracionVariables.cantidadInicial">
+        </div>
+      <div class="form-group">
+        <label for="">Meta:</label>
+        <input type="text" class="form-control"  placeholder="00.00"  ng-model="configuracionVariables.meta"> 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Guardar</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      <div class="form-group">
+        <label for="">Apuesta:</label>
+        <input type="text" class="form-control"  placeholder="00.00" ng-model="configuracionVariables.apuesta">
       </div>
-    </div>
+      <div class="form-group">
+        <label for="">Tipo de Corrida:</label>
+        <select  ng-model="configuracionVariables.tipo">
+          <option value="1" >Número de Corrida</option>
+          <option value="2" >Números Aleatorios</option>
+        </select>
+      </div>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" ng-click="modificarVariables()">Guardar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
 
   </div>
 

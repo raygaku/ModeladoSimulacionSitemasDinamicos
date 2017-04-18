@@ -4,12 +4,15 @@ angular.module('app',[]).controller('main',['$scope',function($scope){
     return parseFloat((Math.random() * (max - min) + min).toFixed(5));
   }
 
+  $scope.verResultados = false;
   $scope.cantidadInicial = 50.00;
   $scope.meta = 80.00;
   $scope.apuesta = 10.00;
   $scope.tipoCorrida = 1; // 1 por Número de Corrida, 2 por Números Aleatorios
   $scope.numeroCorridas = 5;
   $scope.numerosAleatorios = 20;
+  $scope.probabilidadLlegarMeta = 0;
+
   $scope.tabla = [];
   $scope.renglon = {nc:'',cav:'',apuesta:'',naleatorio:'',segano:'',cdv:'',llegameta:''};
 
@@ -57,8 +60,11 @@ angular.module('app',[]).controller('main',['$scope',function($scope){
         var cav = parseFloat($scope.cantidadInicial);
         var apuesta = parseFloat($scope.apuesta);
         var aleatorio = 0;
-        var gano = true;
-        
+        var gano = false;
+        var cdv = 0;
+        var llegameta = false;
+        var contadorMetas = 0;
+        var contadorQuiebras = 0;
         while (contadorCorrida <= $scope.numeroCorridas)
         {
           $scope.renglon = {nc:'',cav:'',apuesta:'',naleatorio:'',segano:'',cdv:'',llegameta:''};
@@ -76,20 +82,122 @@ angular.module('app',[]).controller('main',['$scope',function($scope){
               gano = false;
           }
           
-          $scope.renglon.segano = gano:
+          $scope.renglon.segano = gano;
           if (gano)
           {
+              
+              cdv = cav + apuesta;
+              $scope.renglon.cdv = cdv;
+              apuesta = 10; // Va al final
           }
           else
           {
+              cdv = cav - apuesta;
+              $scope.renglon.cdv = cdv;
+              apuesta = 2 * apuesta;
+              if(apuesta > cdv)
+              {
+                  apuesta = cdv;
+              }
+          }
+          cav = cdv;
+          if(cdv >= $scope.meta)
+          {
+              cav = $scope.cantidadInicial;
+              contadorCorrida +=1;
+              llegameta = true;
+              contadorMetas += 1;
+              $scope.renglon.llegameta = llegameta;
+          }
+          if(cdv <= 0)
+          {
+              cav = $scope.cantidadInicial;
+              contadorCorrida +=1;
+              llegameta = false;
+              contadorQuiebras += 1;
+              $scope.renglon.llegameta = llegameta;
           }
           
+          console.log($scope.renglon);
+          $scope.tabla.push($scope.renglon)
         }
-        
+
+
+        $scope.probabilidadLlegarMeta = parseFloat(  (contadorMetas / (contadorMetas + contadorQuiebras)) * 100  );
     }
     else
     {
+        $scope.renglon = {nc:'',cav:'',apuesta:'',naleatorio:'',segano:'',cdv:'',llegameta:''};
+        var contadorCorrida = 1;
+        var cav = parseFloat($scope.cantidadInicial);
+        var apuesta = parseFloat($scope.apuesta);
+        var aleatorio = 0;
+        var gano = false;
+        var cdv = 0;
+        var llegameta = false;
+        var contadorMetas = 0;
+        var contadorQuiebras = 0;
+        
+        for(var i = 1; i <= $scope.numerosAleatorios; i++)
+        {
+            $scope.renglon = {nc:'',cav:'',apuesta:'',naleatorio:'',segano:'',cdv:'',llegameta:''};
+            $scope.renglon.nc = contadorCorrida;
+            $scope.renglon.cav = cav;
+            $scope.renglon.apuesta = apuesta;
+            aleatorio = getRandom(0,1);
+            $scope.renglon.naleatorio = aleatorio;
+            
+            if(aleatorio <= 0.5)
+            {
+                gano = true;
+            }
+            else
+            {
+                gano = false;
+            }
+            $scope.renglon.segano = gano;
+
+            if(gano)
+            {
+                cdv = cav + apuesta;
+                $scope.renglon.cdv = cdv;
+                apuesta = 10; // Va al final
+            }
+            else
+            {
+                cdv = cav - apuesta;
+                $scope.renglon.cdv = cdv;
+                apuesta = 2 * apuesta;
+                if(apuesta > cdv)
+                {
+                    apuesta = cdv;
+                }
+            }
+            cav = cdv;
+            if(cdv >= $scope.meta)
+            {
+                cav = $scope.cantidadInicial;
+                contadorCorrida +=1;
+                llegameta = true;
+                contadorMetas += 1;
+                $scope.renglon.llegameta = llegameta;
+            }
+            if(cdv <= 0)
+            {
+                cav = $scope.cantidadInicial;
+                contadorCorrida +=1;
+                llegameta = false;
+                contadorQuiebras += 1;
+                $scope.renglon.llegameta = llegameta;
+            }
+          
+            console.log($scope.renglon);
+            $scope.tabla.push($scope.renglon)
+        }
+        $scope.probabilidadLlegarMeta = parseFloat( (contadorMetas / (contadorMetas + contadorQuiebras))*100  );
     }
+    console.log($scope.probabilidadLlegarMeta)
+    $scope.verResultados = true;
   }
 
 }]);

@@ -75,7 +75,81 @@
       </div>
 
   </div>
+</div>
 
+<div class="container-fluid">
+    <table class="table table-bordered track by $index">
+        <tr>
+            <td>Número de Corrida</td>
+            <td>Cantidad que se tiene antes del volado</td>
+            <td>Apuesta</td>
+            <td>Número Aleatorio</td>
+            <td>¿Se ganó el volado?</td>
+            <td>¿Cantidad que se tiene después del volado?</td>
+            <td>¿Se llegó a la meta?</td>
+        </tr>
+        <tr ng-repeat=" renglon in tabla">
+            <td>{{renglon.nc}}</td>
+            <td>{{renglon.cav}}</td>
+            <td>{{renglon.apuesta}}</td>
+            <td>{{renglon.naleatorio}}</td>
+            <td>
+              <div ng-if="renglon.segano">
+                <img src="../assets/happy.png" alt="">
+                Sí
+              </div>
+              <div ng-if="renglon.segano == false">
+                <img src="../assets/sad.png" alt="">
+                No
+              </div>
+              
+            </td>
+            <td>{{renglon.cdv}}</td>
+            <td>
+              <div ng-if="renglon.llegameta">
+                <img src="../assets/get-money.png" alt="">
+                Meta
+              </div>
+              <div ng-if="renglon.llegameta === false">
+                <img src="../assets/student.png" alt="">
+                Quiebra
+              </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="container-fluid">
+  <div class="col-md-12">
+    <button ng-if="verResultados" class="btn btn-info" data-toggle="modal" data-target="#resultados">Ver resultados</button>
+    <button ng-if="verResultados" class="btn btn-warning" onclick="location.reload()">Limpiar</button>
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="resultados" tabindex="-1" role="dialog" aria-labelledby="resultados" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resultados">Resultados</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="">Probabilidad de llegar a la Meta</label>
+        <p>{{probabilidadLlegarMeta}} %</p>
+        <label for="">Probabilidad de llegar a la Quiebra</label>
+        <p>{{100 - probabilidadLlegarMeta}} %</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>

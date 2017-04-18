@@ -118,7 +118,7 @@ angular.module('app',[]).controller('main',['$scope',function($scope){
               $scope.renglon.llegameta = llegameta;
           }
           
-          console.log($scope.renglon);
+         
           $scope.tabla.push($scope.renglon)
         }
 
@@ -191,13 +191,44 @@ angular.module('app',[]).controller('main',['$scope',function($scope){
                 $scope.renglon.llegameta = llegameta;
             }
           
-            console.log($scope.renglon);
+         
             $scope.tabla.push($scope.renglon)
         }
         $scope.probabilidadLlegarMeta = parseFloat( (contadorMetas / (contadorMetas + contadorQuiebras))*100  );
     }
-    console.log($scope.probabilidadLlegarMeta)
+    
     $scope.verResultados = true;
+    var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Probabilidad Llegar a la meta", "Probabilidad Llegar a la quiebra"],
+        datasets: [{
+            label: '% de probabilidad',
+            data: [ $scope.probabilidadLlegarMeta, 100 - $scope.probabilidadLlegarMeta],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+               
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
   }
 
 }]);

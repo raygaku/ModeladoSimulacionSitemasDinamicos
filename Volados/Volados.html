@@ -9,6 +9,7 @@
     <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../node_modules/chart.js/dist/Chart.js"></script>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../node_modules/sweetalert/dist/sweetalert.css">
     <script src="Volados.js"></script>
@@ -144,6 +145,11 @@
         <p>{{probabilidadLlegarMeta}} %</p>
         <label for="">Probabilidad de llegar a la Quiebra</label>
         <p>{{100 - probabilidadLlegarMeta}} %</p>
+
+        <div> 
+
+          <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

@@ -1,5 +1,5 @@
 angular.module('app',[]).controller('main',['$scope',function($scope){
-  $scope.configuracionVariables = {cantidadInicial:'', meta:'', apuesta:'', tipo:''};
+  $scope.configuracionVariables = {cantidadInicial:'', meta:'', apuesta:'', tipo:'', n:''};
   function getRandom(min,max){
     return parseFloat((Math.random() * (max - min) + min).toFixed(5));
   }
@@ -10,6 +10,8 @@ angular.module('app',[]).controller('main',['$scope',function($scope){
   $scope.tipoCorrida = 1; // 1 por Número de Corrida, 2 por Números Aleatorios
   $scope.numeroCorridas = 5;
   $scope.numerosAleatorios = 20;
+  $scope.tabla = [];
+  $scope.renglon = {nc:'',cav:'',apuesta:'',naleatorio:'',segano:'',cdv:'',llegameta:''};
 
   $scope.modificarVariables = function(){
     console.log($scope.configuracionVariables);
@@ -18,7 +20,7 @@ angular.module('app',[]).controller('main',['$scope',function($scope){
       console.log($scope.configuracionVariables.meta)
       sweetAlert("Oops...", "La meta no puede ser menor o igual a la cantidad inicial!", "error");
     }
-    else if ($scope.configuracionVariables.meta == 0 || $scope.configuracionVariables.cantidadInicial == 0 || $scope.configuracionVariables.apuesta == 0)
+    else if ($scope.configuracionVariables.meta == 0 || $scope.configuracionVariables.cantidadInicial == 0 || $scope.configuracionVariables.apuesta == 0 || $scope.configuracionVariables.n == 0)
     {
       sweetAlert("Oops...", "Ninguna variable puede ser igual a 0!", "error");
     }
@@ -34,13 +36,60 @@ angular.module('app',[]).controller('main',['$scope',function($scope){
       $scope.meta = parseFloat($scope.configuracionVariables.meta);
       $scope.apuesta = parseFloat($scope.configuracionVariables.apuesta);
       $scope.tipoCorrida = parseInt($scope.configuracionVariables.tipo);
-      $scope.configuracionVariables = {cantidadInicial:'', meta:'', apuesta:'', tipo:''};
+      if($scope.tipoCorrida  == 1)
+      {
+          $scope.numeroCorridas = $scope.configuracionVariables.n;
+      }
+      else
+      {
+          $scope.numerosAleatorios = $scope.configuracionVariables.n;
+      }
+      $scope.configuracionVariables = {cantidadInicial:'', meta:'', apuesta:'', tipo:'', n:''};
     }  
   }
 
   $scope.iniciarSimulacion = function()
   {
-    console.log(1);
+    if($scope.tipoCorrida == 1)
+    {
+        $scope.renglon = {nc:'',cav:'',apuesta:'',naleatorio:'',segano:'',cdv:'',llegameta:''};
+        var contadorCorrida = 1;
+        var cav = parseFloat($scope.cantidadInicial);
+        var apuesta = parseFloat($scope.apuesta);
+        var aleatorio = 0;
+        var gano = true;
+        
+        while (contadorCorrida <= $scope.numeroCorridas)
+        {
+          $scope.renglon = {nc:'',cav:'',apuesta:'',naleatorio:'',segano:'',cdv:'',llegameta:''};
+          $scope.renglon.nc = contadorCorrida;
+          $scope.renglon.cav = cav;
+          $scope.renglon.apuesta = apuesta;
+          var aleatorio = getRandom(0,1);
+          $scope.renglon.naleatorio = aleatorio;
+          if (aleatorio <= 0.5)
+          {
+              gano = true;
+          }
+          else
+          {
+              gano = false;
+          }
+          
+          $scope.renglon.segano = gano:
+          if (gano)
+          {
+          }
+          else
+          {
+          }
+          
+        }
+        
+    }
+    else
+    {
+    }
   }
 
 }]);

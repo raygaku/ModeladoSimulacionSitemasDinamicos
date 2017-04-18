@@ -62,6 +62,11 @@
           <option value="2" >Números Aleatorios</option>
         </select>
       </div>
+       <div class="form-group" ng-if="configuracionVariables.tipo > 0">
+        <label for="" ng-if="configuracionVariables.tipo == 1">Número de Corridas:</label>
+        <label for="" ng-if="configuracionVariables.tipo == 2">Cantidad de Números:</label>
+        <input type="text" class="form-control"  placeholder="00.00" ng-model="configuracionVariables.n">
+      </div>
       </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" ng-click="modificarVariables()">Guardar</button>

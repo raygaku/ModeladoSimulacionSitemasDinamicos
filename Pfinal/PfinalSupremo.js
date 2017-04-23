@@ -14,8 +14,8 @@ angular.module('app', [])
       var rectangular = getRandom(1,0);
       numerosRectangulares.push(rectangular);
     }
-    //console.log("Números Aleatorios Uniformes Generados para el transcurso de la hora (cada uno representa cuántos clientes llegarán de los 0 a 50 min respectivamente):");
-    //console.log(numerosRectangulares);
+    console.log("Números Aleatorios Uniformes Generados para el transcurso de la hora (cada uno representa cuántos clientes llegarán de los 0 a 50 min respectivamente):");
+    console.log(numerosRectangulares);
     // Función que saca el factorial de un número
 	var factorial = function(n)
 	{
@@ -26,7 +26,7 @@ angular.module('app', [])
 		return n * factorial(n-1);
 	}
     var vlambda = parseFloat($scope.dataS.vlambda)	;
-    //console.log(vlambda)
+    console.log(vlambda)
     var sumF = 0.0;
     $scope.tabla = [];
     $scope.rangos = []; // Rangos de poisson
@@ -50,8 +50,8 @@ angular.module('app', [])
         	break;
         } 
     }
-    //console.log("Rangos (determinan cuantos clientes llegan usando los numeros uniformes): " + ($scope.rangos.length-1) + " (número máximo de clientes que pueden llegar cada 10 min)")
-    //console.log($scope.rangos);
+    console.log("Rangos (determinan cuantos clientes llegan usando los numeros uniformes): " + ($scope.rangos.length-1) + " (número máximo de clientes que pueden llegar cada 10 min)")
+    console.log($scope.rangos);
 
     // Clasifica ĺos números aleatorios uniformes previamente generados en los rangos de poisson
     minutos = [0, 10, 20, 30, 40, 50];
@@ -60,21 +60,21 @@ angular.module('app', [])
     	for (var l = 0 ; l < $scope.rangos.length ; l++) {   		
     		if (numerosRectangulares[b] > $scope.rangos[l]  && numerosRectangulares[b] < $scope.rangos[l+1]  ) {
     			//console.log("Iteración: " + l)
-    			//console.log("Numero de clientes que llegan a los " + minutos[b] + " minutos")
-    			//console.log("Valor del numero uniforme : " + numerosRectangulares[b])
+    			console.log("Numero de clientes que llegan a los " + minutos[b] + " minutos")
+    			console.log("Valor del numero uniforme : " + numerosRectangulares[b])
     			//console.log("Rango menor: " + $scope.rangos[l])
     			//console.log("Rango mayor: " + $scope.rangos[l+1])
-    			//console.log("Valor de la variable aleatoria en poisson: " + l)
+    			console.log("Valor de la variable aleatoria en poisson: " + l)
     			clientes[b] = l;
-    			//console.log("Clientes que llegaron: " + clientes[b])
-    			//console.log("")
+    			console.log("Clientes que llegaron: " + clientes[b])
+    			console.log("")
     			break;
     	}
-    		//console.log("")
+    		console.log("")
     	}
-    	//console.log("Lista de los numeros de clientes que llegaron a lo largo de " + minutos[b] + " minutos: ")
-    	//console.log(clientes)
-        //console.log("")
+    	console.log("Lista de los numeros de clientes que llegaron a lo largo de " + minutos[b] + " minutos: ")
+    	console.log(clientes)
+        console.log("")
 
     }
 
@@ -93,10 +93,10 @@ angular.module('app', [])
             var rectangular = getRandom(1,0);
             numerosRectangulares.push(rectangular);
           }
-          //console.log("");
-          //console.log("Numeros Aleatorios Uniformes Generados para el tiempo de los Clientes:");
-          //console.log(numerosRectangulares);
-          //console.log("");
+          console.log("");
+          console.log("Numeros Aleatorios Uniformes Generados para el tiempo de los Clientes:");
+          console.log(numerosRectangulares);
+          console.log("");
 
         return numerosRectangulares;
         }
@@ -129,8 +129,7 @@ angular.module('app', [])
 
     k=0
     while(k < minutos.length) {
-        $scope.fila = {tiempo:'', clientesActualesEnLotes:'', espaciosDisponibles:'', tiempoRestanteClientesEnLotes:[], clientesLleganKminutos:'', hora:'' }
-        $scope.fila.hora = ccorridas
+        $scope.fila = {tiempo:'', clientesActualesEnLotes:'', espaciosDisponibles:'', tiempoRestanteClientesEnLotes:'', clientesLleganKminutos:'' }
         console.log("Inicio del while de la simulación")
         console.log("===============000000000000========================")
         console.log("")
@@ -176,7 +175,7 @@ angular.module('app', [])
         console.log("Espacios disponibles: "+cuentaLotesSinClientes())
         $scope.fila.espaciosDisponibles = cuentaLotesSinClientes()
         console.log("Tiempo restante de los Clientes: " + lotes)
-        
+        $scope.fila.tiempoRestanteClientesEnLotes = lotes
         console.log("N°. clientes que llegan a los " + minutos[k] + " minutos: "  + clientes[k] )
         $scope.fila.clientesLleganKminutos = clientes[k]
         clientesU = numeroDeClientesPorLlegada(clientes[k])
@@ -189,23 +188,21 @@ angular.module('app', [])
             }
         function verificaLotesLleno() {
             console.log("")
-            //console.log("Saludos desde verificaLotesLleno========????????????????????")
+            console.log("Saludos desde verificaLotesLleno========????????????")
             var contador = 0;
-            for (var cont = 0 ; cont < lotes.length ; cont ++) {
-             //Cuenta los lotes ocupados
+            for (var cont = 0 ; cont < lotes.length ; cont ++) { //Cuenta los lotes ocupados
                 if (lotes[cont] != null) { // Si está ocupado cuenta 1
                     contador++
                 }
-                //console.log("lotes[cont] = "+lotes[cont])
             }
-            //console.log("contador = "+contador)
+            console.log("contador = "+contador)
             if (contador == 6){ // Si los lotes están llenos regresa true o se metieron todos siendo todos menor a 6
-                //console.log("Regreso true porque los LOTES estan LLENOS")
-                //console.log("")
+                console.log("Saludos desde el if con true")
+                console.log("")
                 return true
             } else {
-                //console.log("Regreso false porque los LOTES NO estan llenos")
-                //console.log("")
+                console.log("Saludos desde el if con false")
+                console.log("")
                 return false
             }
         }
@@ -215,25 +212,22 @@ angular.module('app', [])
         var nadaQueMeter = false
         console.log("")
         function verificaNadaQueMeter() {
-            //console.log("")
-            //console.log("Saludos desde verificaNadaQueMeter==================¡¡¡¡¡¡¡¡¡¡¡¡¡!!!!!!!!!!!!¡¡¡¡¡¡¡¡¡¡¡¡¡¡")
-            var cuentaN = 0
+            console.log("")
+            console.log("Saludos desde verificaNadaQueMeter==================¡¡¡¡¡¡¡¡¡¡¡¡¡")
+            var cuentaN = 1
             for (var lol = 0 ; lol < x.length ; lol ++ ) {
-                //console.log("x[lol = "+x[lol])
-                if ( x[lol] == null ) { //Si esta vacio, es porque existen cosas por meter
+                if ( x[lol] == null ) {
                     cuentaN++
-                    //console.log("Estoy dentro del if "+cuentaN+" veces")
                 }
             }
-            //console.log("cuentaN = "+cuentaN)
-            //console.log("x.length = "+x.length)
+            console.log("cuentaN = "+cuentaN)
+            console.log("x.length = "+x.length)
             if (x.length == cuentaN) { // Si es true, quiere decir que todos están vacios, osea nada que meter
-                //console.log("regreso true porque no hay nada que meter") 
-                //console.log("")           
+                console.log("Saludos desde el if con true") 
+                console.log("")           
                 return true
             } else {
-                //console.log("Regreso false porque si hay algo que meter") 
-                //console.log("")
+                console.log("Saludos desde el if con false") 
                 console.log("")               
                 return false
             }
@@ -243,50 +237,34 @@ angular.module('app', [])
         while (1) { // Mientras NO estén llenos los lotes o no haya nada que meter empieza a meter los clientes en los lotes
             //lleno = verificaLotesLleno() 
             //nadaQueMeter = verificaNadaQueMeter() 
-            //console.log("Hola, me ciclo justo donde empieza while que mete clientes")
-            /*if(controlp == 30){
-                break
-            }
-            controlp++*/
-            //console.log(controlp)
-            lleno = verificaLotesLleno()
-            nadaQueMeter = verificaNadaQueMeter()
-            //console.log("()()()()()()()()()()())()()()()()()()()()()()()()()()()()()()()()")
-            //console.log("lotes = " + lotes)
-            //console.log("lleno = "+lleno)  
-            //console.log("x = " + x)
-            //console.log("nadaQueMeter = "+nadaQueMeter)
-        
             if (lleno == true) {
                 break
             }
 
             if (nadaQueMeter == true) {
                 break
-            } 
-            //console.log("lotes[i]= "+lotes[i]) 
-            //console.log("i = "+i)           
+            }
+            //console.log("lleno = "+lleno)  
+            //console.log("nadaQueMeter = "+nadaQueMeter)              
             if ( lotes[i] == null){ // Si el lote i está vacio entonces empieza a meter un cliente x[randd]
-                randd = Math.floor((Math.random() * x.length) + 0) // variable que indicará aleatoreamente que cliente meter al lote de los que llegaron a los minutos[k]
-                //console.log("randd = "+randd)
-                //console.log("x[randd] = "+x[randd])                
+                randd = Math.floor((Math.random() * clientesU.length) + 0) // variable que indicará aleatoreamente que cliente meter al lote de los que llegaron a los minutos[k]                    
                 if ( x[randd] == null ){ // Si se había escogido el índice de un cliente que ya había entrado, se salta el ciclo actual para empezar de nuevo y generar otro número aleatorio
-                    //console.log("me estoy ciclando dentro del if del x[randd] xdxdxd ")
                     continue
                 }
-            //console.log("Sali del if del x[randd] yujuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu yupiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
-            lotes[i] = x[randd] // i es la posición del lote, randd es el cliente en x
-            entran ++; // cuenta que entro un cliente
-            clientesE[i] = clientesU[randd]
-            console.log("Entra el cliente "+clientesU[randd]+"["+(randd+1)+"]"+" en el lote "+(i+1)+" con tiempo de "+lotes[i]+" min")
-            x[randd] = null // se vacía de la lista el cliente escogido para que no se repita
-            }
-            i++ // Siguiente lote
-            
-            if (nadaQueMeter == true) {
-                break
-            }
-            //console.log("")    
+                lotes[i] = x[randd] // i es la posición del lote, randd es el cliente en x
+                entran ++; // cuenta que entro un cliente
+                clientesE[i] = clientesU[randd]
+                console.log("Entra el cliente "+clientesU[randd]+"["+(randd+1)+"]"+" en el lote "+(i+1)+" con tiempo de "+lotes[i]+" min")
+                x[randd] = null // se vacía de la lista el cliente escogido para que no se repita
+                }
+                i++ // Siguiente lote
+                lleno = verificaLotesLleno()
+                nadaQueMeter = verificaNadaQueMeter()
+                controlp++
+                /*if(controlp == 7){
+                    break
+                }*/
+                console.log("")    
                        
         }
         function cuentaLotesSinClientes (){
@@ -300,8 +278,6 @@ angular.module('app', [])
             return contador
         }
         //console.log("")
-        $scope.fila.tiempoRestanteClientesEnLotes = lotes
-        $scope.panel.push($scope.fila)
         console.log("x = " + x)
         console.log("lotes = " + lotes)
         console.log("")
@@ -316,7 +292,7 @@ angular.module('app', [])
         console.log("")
         console.log("---------------------------------------------------------------")
         k++
-        
+        $scope.panel.push($scope.fila)
         
     }
     }
@@ -337,8 +313,7 @@ angular.module('app', [])
     $scope.filaInfo.pEspaciosD = (disponiblesA/ocupadosA)
     console.log("Probabilidad de encontrar un lugar disponible en el estacionamiento "+(1/6))
     $scope.filaInfo.pEncontrarLugarD = (1/6)
-    //$scope.panel.push($scope.filaInfo)
-    console.log($scope.panel)
+    $scope.panel.push($scope.filaInfo)
     }
 }]);
 

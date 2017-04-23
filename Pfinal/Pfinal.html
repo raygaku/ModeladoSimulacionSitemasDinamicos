@@ -69,16 +69,38 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-8">
-				
+				<div class="panel panel-warning" ng-repeat="f in panel">
+					<div class="panel-heading">
+						Tiempo actual: {{f.hora}} hora(s) {{f.tiempo}} minutos
+					</div>
+					<div class="panel-body">
+						<p>Clientes en los lotes actualmente: {{f.clientesActualesEnLotes}}</p>
+						<p>Espacios disponibles: {{f.espaciosDisponibles}}</p>
+						<p>Tiempo restante de los Clientes: {{f.tiempoRestanteClientesEnLotes}}</p>
+						<hr>
+						<p>N°. clientes que llegan a los {{f.tiempo}} minutos: {{f.clientesLleganKminutos}}</p>
+						<ul ng-repeat="l in panel.tiempoRestanteClientesEnLotes track by $index">
+							<li>{{l}}</li>
+							<li>hola</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 
 			<div class="col-sm-4">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						Panel title
+						Resultados
 					</div>
 					<div class="panel-body">
-						Panel body
+						<p>Clientes T que llegaron: {{filaInfo.clientesTotalesL}}</p>
+						<p>Clientes T que entraron: {{filaInfo.clientesTotalesE}}</p>
+						<p>Clientes T que no entraron: {{filaInfo.clientesTotalesNE}}</p>
+						<p>Espacios D T: {{filaInfo.espaciosDisponiblesT}}</p>
+						<p>Espacios O T: {{filaInfo.espaciosOcupadosT}}</p>
+						<p>% de C P: {{filaInfo.pClientesP}}</p>
+						<p>% de espacios D: {{filaInfo.pEspaciosD}}</p>
+						<p>P de encontrar un lugar D en el E: {{filaInfo.pEncontrarLugarD}}</p>
 					</div>
 				</div>
 			</div>

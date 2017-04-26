@@ -69,16 +69,51 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-8">
-				
+				<div class="panel panel-warning" ng-repeat="f in objetos">
+					<div class="panel-heading">
+						Tiempo actual: {{f.hora}} hora(s) {{f.tiempo}} minutos
+					</div>
+					<div class="panel-body">
+						<p>Clientes en los lotes actualmente: {{f.clientesActualesEnLotes}}</p>
+						<hr>
+						<p>Clientes que salieron: </p>
+						<ul ng-repeat="k in f.clientesSalen track by $index">
+							<li>Cliente {{k.cliente}}[{{k.lote}}] del lote {{k.lote}} con tiempo de {{k.tiempo}} minutos</li>
+						</ul>
+						<p>Espacios disponibles: {{f.espaciosDisponibles}}</p>
+						<hr>
+						<p>Tiempo restante de los Clientes: </p>
+						<ul ng-repeat="t in f.tiempoRestanteClientesEnLotes track by $index">
+							<li>Al cliente en el lote {{t.lote}} le restan: {{t.min}} minuto(s)</li>
+						</ul>
+						<hr>
+						<p>N°. clientes que llegan a los {{f.tiempo}} minutos: {{f.clientesLleganKminutos}}</p>
+						<ul ng-repeat="l in f.clientesLlegan track by $index">
+							<li>Tiempo del cliente {{l.cliente}}[{{l.num}}] = {{l.tiempo}} minutos</li>
+						</ul>
+						<hr>
+						<p>Clientes que entraron: </p>
+						<ul ng-repeat="j in f.clientesEntran track by $index">
+							<li>Entra el cliente {{j.cliente}}[{{j.num}}] en el lote {{j.lote}} con tiempo de {{j.tiempo}} minutos</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 
 			<div class="col-sm-4">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						Panel title
+						Resultados
 					</div>
 					<div class="panel-body">
-						Panel body
+						<p>Clientes totales que llegaron: {{objetoInfo.clientesTotalesL}}</p>
+						<p>Clientes totales que entraron: {{objetoInfo.clientesTotalesE}}</p>
+						<p>Clientes totales que no entraron: {{objetoInfo.clientesTotalesNE}}</p>
+						<p>Espacios disponibles totales: {{objetoInfo.espaciosDisponiblesT}}</p>
+						<p>Espacios ocupados totales: {{objetoInfo.espaciosOcupadosT}}</p>
+						<p>Porcentaje de clientes perdidos: {{objetoInfo.pClientesP}} %</p>
+						<p>Porcentaje de espacios disponibles: {{objetoInfo.pEspaciosD}} %</p>
+						<p>Probabilidad de encontrar un lugar disponible: {{objetoInfo.pEncontrarLugarD}} %</p>
 					</div>
 				</div>
 			</div>

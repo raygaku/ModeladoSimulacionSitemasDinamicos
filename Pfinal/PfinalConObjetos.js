@@ -117,7 +117,6 @@ angular.module('app', [])
 
         return vacio
    }
-   var kko=0;
    var corridas = parseFloat($scope.dataS.corridas)
    for(ccorridas=0;ccorridas<corridas;ccorridas++){
     console.log("")
@@ -125,25 +124,11 @@ angular.module('app', [])
     console.log("")
     var tiempoRestanteClientesEnLotes = []
     k=0
-    //var cicloC = 0
+    var cicloC = 0
    
     while(k < minutos.length) {
         
-        $scope.objeto = {
-            tiempo:'', 
-            clientesActualesEnLotes:'', 
-            espaciosDisponibles:'', 
-            tiempoRestanteClientesEnLotes: [], 
-            clientesLleganKminutos:'', 
-            hora:'',
-            clientesSalen: [],
-            clientesLlegan: [],
-            clientesEntran: []
-        }
-
-
-
-
+        $scope.objeto = {tiempo:'', clientesActualesEnLotes:'', espaciosDisponibles:'', tiempoRestanteClientesEnLotes:'', clientesLleganKminutos:'', hora:'' }
         $scope.objeto.hora = ccorridas
         console.log("Inicio del while de la simulación")
         console.log("===============000000000000========================")
@@ -151,24 +136,17 @@ angular.module('app', [])
         var entran = 0
         var disponible = 6 
         // Despues del minuto 0
-
-        if ( kko != 0 ) {
+        if ( k != 0 ) {
             console.log("Minutos transcurridos = 10")
             console.log("")
             console.log("Clientes que salen: ")
             console.log("")
             for ( var q = 0 ; q < lotes.length ; q ++) {
                 if ( lotes[q] <= 10 ) {
-                    $scope.elemento = {cliente:'', lote:'', tiempo:''}
                     console.log("Cliente " + clientesE[q]+"["+(q+1)+"]" + " del lote "+(q+1)+ " con tiempo: " + lotes[q])
-                    $scope.elemento.cliente = clientesE[q]
-                    $scope.elemento.lote = (q+1)
-                    $scope.elemento.tiempo = lotes[q]
-                    $scope.objeto.clientesSalen.push($scope.elemento)
                     lotes[q] = null
                 }
             }
-
             console.log("")
             console.log("Tiempos restantes: ")
             console.log("")
@@ -189,10 +167,9 @@ angular.module('app', [])
             }
             return contador
         }
-        /*if(cicloC == 0)*/
-        //$scope.objeto.tiempoRestanteClientesEnLotes = lotes
+        if(cicloC == 0)$scope.objeto.tiempoRestanteClientesEnLotes = lotes
         //cicloC = 1
-        //$scope.objetos.push($scope.objeto)
+    $scope.objetos.push($scope.objeto)
         console.log("---------------------------------------------------------------")
         console.log("Tiempo : " + minutos[k])
         $scope.objeto.tiempo = minutos[k]
@@ -201,31 +178,14 @@ angular.module('app', [])
         console.log("Espacios disponibles: "+cuentaLotesSinClientes())
         $scope.objeto.espaciosDisponibles = cuentaLotesSinClientes()
         //console.log("Console log de Tiempo restante clientes en lotes Antes de asignar: "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
-        //console.log("Antes de asignar lotes: "+$scope.objeto.tiempoRestanteClientesEnLotes)
-        //console.log("lotes = "+lotes)
+        console.log("Antes de asignar lotes: "+$scope.objeto.tiempoRestanteClientesEnLotes)
+        console.log("lotes = "+lotes)
         
         
-        //console.log("Despues de asignar lotes: "+$scope.objeto.tiempoRestanteClientesEnLotes)
-        //console.log("scope.objetos: "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
+        console.log("Despues de asignar lotes: "+$scope.objeto.tiempoRestanteClientesEnLotes)
+        console.log("scope.objetos: "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
         //console.log("Console log de Tiempo restante clientes en lotes Despues de asignar: "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
-        console.log("lotes = " + lotes)
-        console.log("lotes.lenght = "+ lotes.length)
         console.log("Tiempo restante de los Clientes: " + lotes)
-        console.log("hola desde antes del for")
-        console.log("lotes.lenght = "+lotes.length)
-        for(var i = 0; i < lotes.length ; i++ ) {
-            if(lotes[i] != null){
-                //console.log("hola desde adentro del for")
-                $scope.elemento = {lote:'', min:''}
-                $scope.elemento.lote = (i+1)
-                //console.log("elemento.lote = "+$scope.elemento.lote)
-                $scope.elemento.min = lotes[i]
-                //console.log("elemento.min = "+$scope.elemento.min)
-                $scope.objeto.tiempoRestanteClientesEnLotes.push($scope.elemento)
-            }
-        }
-        console.log("hola desde despues del for")
-        console.log("scopeobjetotiempores = "+$scope.objeto.tiempoRestanteClientesEnLotes)
         
         console.log("N°. clientes que llegan a los " + minutos[k] + " minutos: "  + clientes[k] )
         $scope.objeto.clientesLleganKminutos = clientes[k]
@@ -233,16 +193,11 @@ angular.module('app', [])
         // Se llena el arreglo x[], guardando el tiempo que tarda cada cliente
         x = []
         for (var i = 0 ; i < clientesU.length ; i++) {
-            $scope.elemento = {cliente:'', num:'', tiempo:''}
             x[i] = Math.round(a + (b - a) * clientesU[i]) // tiempo
-            $scope.elemento.cliente = clientesU[i]
-            $scope.elemento.num = (i+1)
-            $scope.elemento.tiempo = x[i]
-            $scope.objeto.clientesLlegan.push($scope.elemento)
             console.log("Tiempo del Cliente " + clientesU[i]+"["+(i+1)+"]" +" = " + x[i] + " min")
             clientesT ++
             }
-        //console.log("Hola despues del primer for "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
+        console.log("Hola despues del primer for "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
         function verificaLotesLleno() {
             console.log("")
             //console.log("Saludos desde verificaLotesLleno========????????????????????")
@@ -285,7 +240,7 @@ angular.module('app', [])
                 return false
             }
         }
-        //console.log("hola antes del while: "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
+        console.log("hola antes del while: "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
         // While que mete los clientes a los lotes
         var controlp = 0
         while (1) { // Mientras NO estén llenos los lotes o no haya nada que meter empieza a meter los clientes en los lotes
@@ -309,12 +264,6 @@ angular.module('app', [])
             clientesE[i] = clientesU[randd]
             //console.log("clientesU: "+clientesU+" ["+clientesU.length+"]")
             //console.log("x: "+x+" ["+x.length+"]")
-            $scope.elemento = {cliente:'', num:'', lote:'', tiempo:''}
-            $scope.elemento.cliente = clientesU[randd]
-            $scope.elemento.num = (randd+1)
-            $scope.elemento.lote = (i+1)
-            $scope.elemento.tiempo = lotes[i]
-            $scope.objeto.clientesEntran.push($scope.elemento)
             console.log("Entra el cliente "+clientesU[randd]+"["+(randd+1)+"]"+" en el lote "+(i+1)+" con tiempo de "+lotes[i]+" min")
             x[randd] = null // se vacía de la lista el cliente escogido para que no se repita
             }
@@ -326,7 +275,7 @@ angular.module('app', [])
             //console.log("")    
                        
         }
-        //console.log("hola despues del while: "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
+        console.log("hola despues del while: "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
         function cuentaLotesSinClientes (){
             var contador = 0;
             for (var cont = 0 ; cont < lotes.length ; cont ++) { //Cuenta los lotes ocupados
@@ -337,11 +286,11 @@ angular.module('app', [])
             }
             return contador
         }
-        //console.log("Console log de Tiempo restante clientes en lotes Antes de hacer push: "+$scope.objeto.tiempoRestanteClientesEnLotes)
-        //if (k > 0) console.log("console log de tiempo restante clientes en lotes del tiempo anterior: "+$scope.objetos[k-1].tiempoRestanteClientesEnLotes)
-        $scope.objetos.push($scope.objeto) //En realidad, agrega un objeto al arreglo $scope.objetos
-        //console.log("Console log de Tiempo restante clientes en lotes Despues de hacer push: "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
-        //if (k > 0) console.log("console log de tiempo restante clientes en lotes del tiempo anterior: "+$scope.objetos[k-1].tiempoRestanteClientesEnLotes)
+        console.log("Console log de Tiempo restante clientes en lotes Antes de hacer push: "+$scope.objeto.tiempoRestanteClientesEnLotes)
+        if (k > 0) console.log("console log de tiempo restante clientes en lotes del tiempo anterior: "+$scope.objetos[k-1].tiempoRestanteClientesEnLotes)
+        //$scope.objetos.push($scope.objeto) //En realidad, agrega un objeto al arreglo $scope.objetos
+        console.log("Console log de Tiempo restante clientes en lotes Despues de hacer push: "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
+        if (k > 0) console.log("console log de tiempo restante clientes en lotes del tiempo anterior: "+$scope.objetos[k-1].tiempoRestanteClientesEnLotes)
         console.log("x = " + x)
         console.log("lotes = " + lotes)
         console.log("")
@@ -356,7 +305,6 @@ angular.module('app', [])
         console.log("")
         console.log("---------------------------------------------------------------")
         k++
-        kko = 1
         //cicloC ++
         //break
         //cicloC = 1
@@ -375,15 +323,12 @@ angular.module('app', [])
     $scope.objetoInfo.espaciosDisponiblesT = disponiblesA
     console.log("Espacios ocupados totales: "+ocupadosA)
     $scope.objetoInfo.espaciosOcupadosT = ocupadosA
-    //console.log("Porcentaje de clientes perdidos: " +((fuera/clientesT)*100))
-    //$scope.objetoInfo.pClientesP = ((fuera/clientesT)*100)
-    $scope.objetoInfo.pClientesP = (Math.round((fuera/clientesT)*100) )
-    //console.log("Porcentaje promedio de espacios disponibles: "+((disponiblesA/ocupadosA)*100))
-    //$scope.objetoInfo.pEspaciosD = ((disponiblesA/ocupadosA)*100)
-    $scope.objetoInfo.pEspaciosD =  (Math.round((disponiblesA/ocupadosA)*100) )
-    //console.log("Probabilidad de encontrar un lugar disponible en el estacionamiento "+((1/6)*100))
-    //$scope.objetoInfo.pEncontrarLugarD = ((1/6)*100)
-    $scope.objetoInfo.pEncontrarLugarD = (Math.round((1/6)*100) )
+    console.log("Porcentaje de clientes perdidos: " +(fuera/clientesT))
+    $scope.objetoInfo.pClientesP = (fuera/clientesT)
+    console.log("Porcentaje promedio de espacios disponibles: "+(disponiblesA/ocupadosA))
+    $scope.objetoInfo.pEspaciosD = (disponiblesA/ocupadosA)
+    console.log("Probabilidad de encontrar un lugar disponible en el estacionamiento "+(1/6))
+    $scope.objetoInfo.pEncontrarLugarD = (1/6)
     //$scope.objetos.push($scope.objetoInfo)
     console.log($scope.objetos)
     //console.log($scope.objetos[k])

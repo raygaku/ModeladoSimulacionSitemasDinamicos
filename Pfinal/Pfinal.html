@@ -4,8 +4,12 @@
 	<meta charset="UTF-8">
 	<title>Pfinal</title>
 	<script src="../node_modules/angular/angular.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../node_modules/chart.js/dist/Chart.js"></script>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/sweetalert/dist/sweetalert.css">
 	<script src="Pfinal.js"></script>
 	<style>
     table{
@@ -39,33 +43,22 @@
 			<td>{{f.mfxi}}</td>
 		</tr>
 	</table>-->
-	<nav class="navbar navbar-default navbar-custom">
-	  <div class="container-fluid">
-	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a  class="navbar-brand" href="#">Proyecto Final</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">L: {{dataS.vlambda}}</a></li> 
+        <li class="active"><a href="#">a: {{dataS.a}}</a></li> 
+        <li class="active"><a href="#">b: {{dataS.b}}</a></li>
+        <li class="active"><a href="#">H: {{dataS.corridas}}</a></li>
+      </ul> 
+         <button type="button" class="btn btn-danger navbar-btn navbar-right" ng-click="ejecutar()" >Iniciar Simulación</button>
+        <button type="button" class="btn btn-info navbar-btn navbar-right" data-toggle="modal" data-target="#modal">Cambiar Variables</button> 
+    </div>
+ </nav>
 
-	      <form class="navbar-form navbar-left">
-	        <div class="form-group">
-	          <label>lambda</label>
-	          <input type="text" class="form-control" placeholder="Lambda" ng-model="dataS.vlambda">
-	          <label>a</label>
-	          <input type="text" class="form-control" placeholder="Rango menor a" ng-model="dataS.a">
-	          <label>b</label>
-	          <input type="text" class="form-control" placeholder="Rango mayor b" ng-model="dataS.b">
-	          <label>horas</label>
-	          <input type="text" class="form-control" placeholder="Horas transcurridas" ng-model="dataS.corridas">
-	        </div>
-	      </form>
-
-
-		  <form class="navbar-form navbar-left" role="search">
-		    <button class="btn btn-default" ng-click="ejecutar()">Ejecutar</button>
-		  </form>
-
-	    </div><!-- /.navbar-collapse -->
-
-	  </div><!-- /.container-fluid -->
-	</nav>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-8">
@@ -114,11 +107,74 @@
 						<p>Porcentaje de clientes perdidos: {{objetoInfo.pClientesP}} %</p>
 						<p>Porcentaje de espacios disponibles: {{objetoInfo.pEspaciosD}} %</p>
 						<p>Probabilidad de encontrar un lugar disponible: {{objetoInfo.pEncontrarLugarD}} %</p>
+						<hr>
+						<button ng-if="verResultados" class="btn btn-info" data-toggle="modal" data-target="#resultados">Ver graficas</button>
+    					<button ng-if="verResultados" class="btn btn-warning" onclick="location.reload()">Limpiar</button>
 					</div>
 				</div>
 			</div>
+
+
 		</div>
 	</div>
+
+	<div id="modal" class="modal fade" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Cambiar variables</h4>
+	      </div>
+	      <div class="modal-body">
+	        <label>L</label>
+	         <input type="text" class="form-control" placeholder="Lambda" ng-model="dataS.vlambda">
+	         <label>a</label>
+	         <input type="text" class="form-control" placeholder="Rango menor a" ng-model="dataS.a">
+	         <label>b</label>
+	         <input type="text" class="form-control" placeholder="Rango mayor b" ng-model="dataS.b">
+	         <label>H</label>
+	         <input type="text" class="form-control" placeholder="Horas transcurridas" ng-model="dataS.corridas">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+
+	<!-- Modal -->
+<div class="modal fade" id="resultados" tabindex="-1" role="dialog" aria-labelledby="resultados" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resultados">Resultados</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="">Porcentaje de clientes perdidos</label>
+        <p>{{objetoInfo.pClientesP}} %</p>
+        <label for="">Porcentaje de espacios disponibles</label>
+        <p>{{objetoInfo.pEspaciosD}} %</p>
+        <label>Probabilidad de encontrar un lugar disponible</label>
+        <p>{{objetoInfo.pEncontrarLugarD}} %</p>
+
+        <div> 
+
+          <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
 
 </body>
 </html>

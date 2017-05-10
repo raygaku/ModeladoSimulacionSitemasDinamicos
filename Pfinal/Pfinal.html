@@ -49,10 +49,10 @@
         <a  class="navbar-brand" href="#">Proyecto Final</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">L: {{dataS.vlambda}}</a></li> 
+        <li class="active"><a href="#">Lambda: {{dataS.vlambda}}</a></li> 
         <li class="active"><a href="#">a: {{dataS.a}}</a></li> 
         <li class="active"><a href="#">b: {{dataS.b}}</a></li>
-        <li class="active"><a href="#">H: {{dataS.corridas}}</a></li>
+        <li class="active"><a href="#">Horas: {{dataS.corridas}}</a></li>
       </ul> 
          <button type="button" class="btn btn-danger navbar-btn navbar-right" ng-click="ejecutar()" >Iniciar Simulación</button>
         <button type="button" class="btn btn-info navbar-btn navbar-right" data-toggle="modal" data-target="#modal">Cambiar Variables</button> 
@@ -80,7 +80,7 @@
 							<li>Al cliente en el lote {{t.lote}} le restan: {{t.min}} minuto(s)</li>
 						</ul>
 						<hr>
-						<p>N°. clientes que llegan a los {{f.tiempo}} minutos: {{f.clientesLleganKminutos}}</p>
+						<p>N.° de clientes que llegan a los {{f.tiempo}} minutos: {{f.clientesLleganKminutos}}</p>
 						<ul ng-repeat="l in f.clientesLlegan track by $index">
 							<li>Tiempo del cliente {{l.cliente}}[{{l.num}}] = {{l.tiempo}} minutos</li>
 						</ul>
@@ -90,7 +90,9 @@
 							<li>Entra el cliente {{j.cliente}}[{{j.num}}] en el lote {{j.lote}} con tiempo de {{j.tiempo}} minutos</li>
 						</ul>
 						<hr>
-						<p>Porcentaje de espacios disponibles: </p>
+
+						<p>Porcentaje de espacios disponibles: {{f.pEspaciosDisponibles}} %</p>
+
 					</div>
 				</div>
 			</div>
@@ -101,16 +103,19 @@
 						Resultados
 					</div>
 					<div class="panel-body">
-						<p>Clientes totales que llegaron: {{objetoInfo.clientesTotalesL}}</p>
+						<!--<p>Clientes totales que llegaron: {{objetoInfo.clientesTotalesL}}</p>
 						<p>Clientes totales que entraron: {{objetoInfo.clientesTotalesE}}</p>
 						<p>Clientes totales que no entraron: {{objetoInfo.clientesTotalesNE}}</p>
 						<p>Espacios disponibles totales: {{objetoInfo.espaciosDisponiblesT}}</p>
 						<p>Espacios ocupados totales: {{objetoInfo.espaciosOcupadosT}}</p>
+						-->
 						<p>Porcentaje de clientes perdidos: {{objetoInfo.pClientesP}} %</p>
-						<p>Porcentaje de espacios disponibles: {{objetoInfo.pEspaciosD}} %</p>
+						<p>Porcentaje promedio de espacios disponibles: {{objetoInfo.pEspaciosD}} %</p>
 						<p>Probabilidad de encontrar un lugar disponible: {{objetoInfo.pEncontrarLugarD}} %</p>
 						<hr>
+
 						<button ng-if="verResultados" class="btn btn-info" data-toggle="modal" data-target="#resultados">Ver gráficas</button>
+
     					<button ng-if="verResultados" class="btn btn-warning" onclick="location.reload()">Limpiar</button>
 					</div>
 				</div>
@@ -128,13 +133,13 @@
 	        <h4 class="modal-title">Cambiar variables</h4>
 	      </div>
 	      <div class="modal-body">
-	        <label>L</label>
+	        <label>Lambda</label>
 	         <input type="text" class="form-control" placeholder="Lambda" ng-model="dataS.vlambda">
-	         <label>a</label>
+	         <label>Rango menor a</label>
 	         <input type="text" class="form-control" placeholder="Rango menor a" ng-model="dataS.a">
-	         <label>b</label>
+	         <label>Rango mayor b</label>
 	         <input type="text" class="form-control" placeholder="Rango mayor b" ng-model="dataS.b">
-	         <label>H</label>
+	         <label>Horas transcurridas</label>
 	         <input type="text" class="form-control" placeholder="Horas transcurridas" ng-model="dataS.corridas">
 	      </div>
 	      <div class="modal-footer">
@@ -159,7 +164,9 @@
       <div class="modal-body">
         <label for="">Porcentaje de clientes perdidos</label>
         <p>{{objetoInfo.pClientesP}} %</p>
-        <label for="">Porcentaje de espacios disponibles</label>
+
+        <label for="">Porcentaje promedio de espacios disponibles</label>
+
         <p>{{objetoInfo.pEspaciosD}} %</p>
         <label>Probabilidad de encontrar un lugar disponible</label>
         <p>{{objetoInfo.pEncontrarLugarD}} %</p>

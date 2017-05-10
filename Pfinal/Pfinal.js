@@ -9,13 +9,13 @@ angular.module('app', [])
 
   // Aquí se guardan los números aleatorios uniformes generados
   numerosRectangulares = [];
-  for(var j = 1; j <= 6; j++)
+  for(var j = 1; j <= (6*$scope.dataS.corridas); j++)
     {
       var rectangular = getRandom(1,0);
       numerosRectangulares.push(rectangular);
     }
-    //console.log("Números Aleatorios Uniformes Generados para el transcurso de la hora (cada uno representa cuántos clientes llegarán de los 0 a 50 min respectivamente):");
-    //console.log(numerosRectangulares);
+    console.log("Números Aleatorios Uniformes Generados para el transcurso de la hora (cada uno representa cuántos clientes llegarán de los 0 a 50 min respectivamente):");
+    console.log(numerosRectangulares);
     // Función que saca el factorial de un número
 	var factorial = function(n)
 	{
@@ -29,7 +29,7 @@ angular.module('app', [])
     //console.log(vlambda)
     var sumF = 0.0;
     $scope.tabla = [];
-    $scope.rangos = []; // Rangos de poisson
+    $scope.rangos = [0]; // Rangos de poisson
     var fxi = 0;
     var i = 0;
 
@@ -46,32 +46,36 @@ angular.module('app', [])
         	break;
         } 
     }
-    //console.log("Rangos (determinan cuantos clientes llegan usando los numeros uniformes): " + ($scope.rangos.length-1) + " (número máximo de clientes que pueden llegar cada 10 min)")
-    //console.log($scope.rangos);
-
+    $scope.rangos.push(1)
+    console.log("Rangos (determinan cuantos clientes llegan usando los numeros uniformes): " + ($scope.rangos.length-1) + " (número máximo de clientes que pueden llegar cada 10 min)")
+    console.log($scope.rangos);
+    var qwert = 0
     // Clasifica ĺos números aleatorios uniformes previamente generados en los rangos de poisson
     minutos = [0, 10, 20, 30, 40, 50];
     clientes = []
-    for (var b = 0 ; b < 6 ; b ++) {
+    for (var b = 0 ; b < (6*$scope.dataS.corridas) ; b ++) {
+        if (qwert > 5) qwert = 0
     	for (var l = 0 ; l < $scope.rangos.length ; l++) {   		
     		if (numerosRectangulares[b] > $scope.rangos[l]  && numerosRectangulares[b] < $scope.rangos[l+1]  ) {
-    			//console.log("Iteración: " + l)
-    			//console.log("Numero de clientes que llegan a los " + minutos[b] + " minutos")
-    			//console.log("Valor del numero uniforme : " + numerosRectangulares[b])
-    			//console.log("Rango menor: " + $scope.rangos[l])
-    			//console.log("Rango mayor: " + $scope.rangos[l+1])
-    			//console.log("Valor de la variable aleatoria en poisson: " + l)
+    			console.log("Iteración: " + l)
+    			console.log("Numero de clientes que llegan a los " + minutos[qwert] + " minutos")
+    			console.log("Valor del numero uniforme : " + numerosRectangulares[b])
+    			console.log("Rango menor: " + $scope.rangos[l])
+    			console.log("Rango mayor: " + $scope.rangos[l+1])
+    			console.log("Valor de la variable aleatoria en poisson: " + l)
     			clientes[b] = l;
-    			//console.log("Clientes que llegaron: " + clientes[b])
-    			//console.log("")
+    			console.log("Clientes que llegaron: " + clientes[b])
+    			console.log("")
+                qwert++
     			break;
     	}
     		//console.log("")
+
     	}
     	//console.log("Lista de los numeros de clientes que llegaron a lo largo de " + minutos[b] + " minutos: ")
     	//console.log(clientes)
         //console.log("")
-
+        
     }
 
     // Distribución uniforme
@@ -117,6 +121,8 @@ angular.module('app', [])
 
         return vacio
    }
+   var promedioControl = 0
+   var ppromedioA = 0
    var kko=0;
    var corridas = parseFloat($scope.dataS.corridas)
    for(ccorridas=0;ccorridas<corridas;ccorridas++){
@@ -126,7 +132,7 @@ angular.module('app', [])
     var tiempoRestanteClientesEnLotes = []
     k=0
     //var cicloC = 0
-   
+    
     while(k < minutos.length) {
         
         $scope.objeto = {
@@ -138,7 +144,8 @@ angular.module('app', [])
             hora:'',
             clientesSalen: [],
             clientesLlegan: [],
-            clientesEntran: []
+            clientesEntran: [],
+            pEspaciosDisponibles: ''
         }
 
 
@@ -196,6 +203,10 @@ angular.module('app', [])
         console.log("---------------------------------------------------------------")
         console.log("Tiempo : " + minutos[k])
         $scope.objeto.tiempo = minutos[k]
+        var lotesSinClientes
+        //var lotesConClientes
+        lotesSinClientes = cuentaLotesSinClientes()
+
         console.log("Clientes en los Lotes actualmente: " + cuentaLotesConClientes())
         $scope.objeto.clientesActualesEnLotes = cuentaLotesConClientes()
         console.log("Espacios disponibles: "+cuentaLotesSinClientes())
@@ -339,6 +350,10 @@ angular.module('app', [])
         }
         //console.log("Console log de Tiempo restante clientes en lotes Antes de hacer push: "+$scope.objeto.tiempoRestanteClientesEnLotes)
         //if (k > 0) console.log("console log de tiempo restante clientes en lotes del tiempo anterior: "+$scope.objetos[k-1].tiempoRestanteClientesEnLotes)
+        ppromedio = Math.round((lotesSinClientes/6)*100)
+        console.log("ppromedio = " + ppromedio)
+        ppromedioA += ppromedio
+        $scope.objeto.pEspaciosDisponibles = ppromedio
         $scope.objetos.push($scope.objeto) //En realidad, agrega un objeto al arreglo $scope.objetos
         //console.log("Console log de Tiempo restante clientes en lotes Despues de hacer push: "+$scope.objetos[k].tiempoRestanteClientesEnLotes)
         //if (k > 0) console.log("console log de tiempo restante clientes en lotes del tiempo anterior: "+$scope.objetos[k-1].tiempoRestanteClientesEnLotes)
@@ -348,6 +363,8 @@ angular.module('app', [])
         console.log("Entran: " + entran)
         entranA += entran
         console.log("Entran acumulado: " + entranA)
+        //lotesConClientes = cuentaLotesConClientes()
+        //if (lotesConClientes == 0) lotesConClientes = 1
         console.log("Espacios ocupados: "  + cuentaLotesConClientes())
         console.log("Tiempo restante de los clientes en los Lotes: " + lotes)
         console.log("Quedan fuera: " + Math.abs(entran - clientesU.length))
@@ -357,9 +374,15 @@ angular.module('app', [])
         console.log("---------------------------------------------------------------")
         k++
         kko = 1
+        promedioControl ++
         //cicloC ++
         //break
         //cicloC = 1
+        
+        console.log("lotesSinClientes: " + lotesSinClientes)
+        //console.log("lotesConClientes: " + lotesConClientes)
+        //console.log("ppromedio: " + $scope.objeto.pEspaciosDisponibles)
+
         
         
     }
@@ -380,19 +403,27 @@ angular.module('app', [])
     $scope.objetoInfo.pClientesP = (Math.round((fuera/clientesT)*100) )
     //console.log("Porcentaje promedio de espacios disponibles: "+((disponiblesA/ocupadosA)*100))
     //$scope.objetoInfo.pEspaciosD = ((disponiblesA/ocupadosA)*100)
-    $scope.objetoInfo.pEspaciosD =  (Math.round((disponiblesA/ocupadosA)*100) )
+    //$scope.objetoInfo.pEspaciosD =  (Math.round((disponiblesA/ocupadosA)*100) )
+    ppromedioR = Math.round(ppromedioA / promedioControl)
+    console.log("ppromedioR: " + ppromedioR)
+    console.log("ppromedioA: " + ppromedioA)
+    console.log("promedioControl: "+ promedioControl)
+    $scope.objetoInfo.pEspaciosD =  ppromedioR
     //console.log("Probabilidad de encontrar un lugar disponible en el estacionamiento "+((1/6)*100))
     //$scope.objetoInfo.pEncontrarLugarD = ((1/6)*100)
     $scope.objetoInfo.pEncontrarLugarD = (Math.round((1/6)*100) )
     //$scope.objetos.push($scope.objetoInfo)
     console.log($scope.objetos)
     //console.log($scope.objetos[k])
+
          $scope.verResultados = true;
         var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Porcentaje de clientes perdidos", "Porcentaje de espacios disponibles", "Probabilidad de encontrar un lugar disponible"],
+
+        labels: ["Porcentaje de clientes perdidos", "Porcentaje promedio de espacios disponibles", "Probabilidad de encontrar un lugar disponible"],
+
         datasets: [{
             label: '% de probabilidad',
             data: [ $scope.objetoInfo.pClientesP, $scope.objetoInfo.pEspaciosD, $scope.objetoInfo.pEncontrarLugarD],

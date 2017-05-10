@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title>G. C Multiplicativo</title>
   <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
   <script src="gcMultiplicativo.js"></script>
 
   <style>
@@ -20,8 +23,12 @@
   </style>
 </head>
 <body ng-app="gcapp" ng-controller="main">
-<a href="../index.html">Volver</a>
-  <table>
+<div class="container-fluid">
+
+<a class="btn btn-danger" href="../index.html">Volver</a>
+<div class="row">
+<div class="col-md-4">
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
       <td>
          <label for="">a: </label>
@@ -48,10 +55,10 @@
     </tr>
     <tr>
       <td>
-         <button onclick="location.reload()">Limpiar</button>
+         <button class="btn btn-warning" onclick="location.reload()">Limpiar</button>
       </td>
         <td>
-         <input type="BUTTON" ng-click="enviarvalores()" value="Enviar">
+         <input class="btn btn-info" type="BUTTON" ng-click="enviarvalores()" value="Enviar">
         </td>
     </tr>
     <tr>
@@ -59,9 +66,13 @@
       <td><input type="TEXT" ng-model="pe" disabled></td>
     </tr>
   </table>
+  </div>
+</div>
 
+<div class="row">
+<div class="col-md-4">x
   <h2>Tabla de resultados</h2>
-  <table>
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
       <td>n</td>
       <td>x0</td>
@@ -79,8 +90,11 @@
     </tr>
 
   </table>
+</div>
+  </div>
   <h3 ng-if="confiable">Por lo tanto, Generador congruencial Multiplicativo  confiable</h3>
   <h3 ng-if="noconfiable">Por lo tanto, Generador congruencial Multiplicativo no  confiable</h3>
+  </div>
   </body>
 
   </html>

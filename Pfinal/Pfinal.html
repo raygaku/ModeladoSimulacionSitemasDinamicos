@@ -89,6 +89,8 @@
 						<ul ng-repeat="j in f.clientesEntran track by $index">
 							<li>Entra el cliente {{j.cliente}}[{{j.num}}] en el lote {{j.lote}} con tiempo de {{j.tiempo}} minutos</li>
 						</ul>
+						<hr>
+						<p>Porcentaje de espacios disponibles: </p>
 					</div>
 				</div>
 			</div>
@@ -108,9 +110,13 @@
 						<p>Porcentaje de espacios disponibles: {{objetoInfo.pEspaciosD}} %</p>
 						<p>Probabilidad de encontrar un lugar disponible: {{objetoInfo.pEncontrarLugarD}} %</p>
 						<hr>
+						<button ng-if="verResultados" class="btn btn-info" data-toggle="modal" data-target="#resultados">Ver gráficas</button>
+    					<button ng-if="verResultados" class="btn btn-warning" onclick="location.reload()">Limpiar</button>
 					</div>
 				</div>
 			</div>
+
+
 		</div>
 	</div>
 
@@ -137,6 +143,40 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+
+
+
+	<!-- Modal -->
+<div class="modal fade" id="resultados" tabindex="-1" role="dialog" aria-labelledby="resultados" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resultados">Resultados</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="">Porcentaje de clientes perdidos</label>
+        <p>{{objetoInfo.pClientesP}} %</p>
+        <label for="">Porcentaje de espacios disponibles</label>
+        <p>{{objetoInfo.pEspaciosD}} %</p>
+        <label>Probabilidad de encontrar un lugar disponible</label>
+        <p>{{objetoInfo.pEncontrarLugarD}} %</p>
+
+        <div> 
+
+          <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
 
 </body>
 </html>

@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
 	<title>DPoisson</title>
 	<script src="../node_modules/angular/angular.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  	<script src="../node_modules/jquery/dist/jquery.js"></script>
+  	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
 	<script src="Dpoisson.js"></script>
 	<style>
     table{
@@ -19,21 +22,29 @@
   	</style>
 </head>
 <body ng-app="app" ng-controller="controller">
-<a href="../index.html">Volver</a>
-<table>
+<div class="container-fluid">
+<a class="btn btn-danger" href="../index.html">Volver</a>
+<div class="row">
+<div class="col-md-4">
+<table class="table table-bordered table-hover table-condensed">
   <tr>
     <td>Lambda</td>
     <td><input type="TEXT" ng-model="dataS.lambda"></td>
-    <td><button ng-click="ejecutar()">Ejecutar</button></td>
-    <td><button onclick="location.reload()">Limpiar</button></td>
+    <td><button class="btn btn-info" ng-click="ejecutar()">Ejecutar</button></td>
+    <td><button class="btn btn-warning" onclick="location.reload()">Limpiar</button></td>
   </tr>
 </table>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-4">
 <h1>Tabla</h1>
-	<table>
+	<table class="table table-bordered table-hover table-condensed">
 		<tr>
-			<td>x</td>
-			<td>f(xi)</td>
-			<td>F(xi)</td>
+			<td class="success">x</td>
+			<td class="success">f(xi)</td>
+			<td class="success">F(xi)</td>
 		</tr>
 
 		<tr ng-repeat="f in tabla track by $index">
@@ -42,11 +53,22 @@
 			<td>{{f.mfxi}}</td>
 		</tr>
 	</table>
-
+</div>
+<div class="col-md-4">
 	<h1>Condiciones</h1>
 	<p ng-repeat="c in condiciones">{{c.condicion}}</p>
-	<h3>Demanda</h3>
-	<p ng-bind="demanda"></p>
-
+</div>
+<div class="col-md-2">
+	<h1>Demanda</h1>
+	<table class="table table-bordered table-hover table-condensed">
+	<tr>
+		<td class="success">Demanda</td>
+		<td><p ng-bind="demanda"></p></td>
+	</tr>
+	</table>
+	
+</div>
+	</div>
+</div>
 </body>
 </html>

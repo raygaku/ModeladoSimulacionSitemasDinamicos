@@ -1,6 +1,6 @@
 angular.module('app', [])
 .controller('controller', ['$scope', function($scope){
-    $scope.dataS = {vlambda:'', a:'', b:'', corridas: ''}
+    $scope.dataS = {vlambda:10, a:10, b:30, corridas:1}
     $scope.ejecutar = function() {
 	// Funcion que genera numeros aleatorios
     function getRandom(min,max){
@@ -387,6 +387,40 @@ angular.module('app', [])
     //$scope.objetos.push($scope.objetoInfo)
     console.log($scope.objetos)
     //console.log($scope.objetos[k])
+         $scope.verResultados = true;
+        var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Porcentaje de clientes perdidos", "Porcentaje de espacios disponibles", "Probabilidad de encontrar un lugar disponible"],
+        datasets: [{
+            label: '% de probabilidad',
+            data: [ $scope.objetoInfo.pClientesP, $scope.objetoInfo.pEspaciosD, $scope.objetoInfo.pEncontrarLugarD],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+                
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 0.2)'
+               
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
     }
 }]);
 

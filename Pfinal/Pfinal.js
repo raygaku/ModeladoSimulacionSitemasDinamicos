@@ -415,14 +415,15 @@ angular.module('app', [])
     //$scope.objetos.push($scope.objetoInfo)
     console.log($scope.objetos)
     //console.log($scope.objetos[k])
-    
 
          $scope.verResultados = true;
         var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
+
         labels: ["Porcentaje de clientes perdidos", "Porcentaje promedio de espacios disponibles", "Probabilidad de encontrar un lugar disponible"],
+
         datasets: [{
             label: '% de probabilidad',
             data: [ $scope.objetoInfo.pClientesP, $scope.objetoInfo.pEspaciosD, $scope.objetoInfo.pEncontrarLugarD],

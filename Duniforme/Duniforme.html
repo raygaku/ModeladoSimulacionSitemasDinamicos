@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>DUniforme</title>
   <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
   <script src="Duniforme.js"></script>
   <style>
     table{
@@ -19,8 +22,11 @@
    </style>
 </head>
 <body ng-app="app" ng-controller="main">
-<a href="../index.html">Volver</a>
-  <table>
+<div class="container-fluid">
+<a class="btn btn-danger" href="../index.html">Volver</a>
+<div class="row">
+<div class="col-md-4">
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
       <td>Cantidad de numeros</td>
       <td><input type="TEXT" ng-model="dataS.n"></td>
@@ -34,11 +40,16 @@
       <td><input type="TEXT" ng-model="dataS.b"></td>
     </tr>
     <tr>
-      <td><button onclick="location.reload()">Limpiar</button></td>
-      <td><button ng-click="ejecutar()">Enviar</button></td>
+      <td><button class="btn btn-info" onclick="location.reload()">Limpiar</button></td>
+      <td><button class="btn btn-warning" ng-click="ejecutar()">Enviar</button></td>
     </tr>
   </table> 
- <table>
+</div>
+  </div>
+
+  <div class="row">
+  <div class="col-md-4">
+ <table class="table table-bordered table-hover table-condensed">
   <tr>
     <td>Números generados</td>
   </tr>
@@ -46,7 +57,9 @@
     <td>{{$index + 1}}, {{numero}}</td>
   </tr>
  </table>
- <table>
+ </div>
+ <div class="col-md-4">
+ <table class="table table-bordered table-hover table-condensed">
    <tr>
      <td>Tiempos por numero</td>
    </tr>
@@ -54,7 +67,9 @@
      <td>Tiempo {{$index + 1}},  {{numero}}</td>
    </tr>
  </table>
- <table>
+ </div>
+ <div class="col-md-2">
+ <table class="table table-bordered table-hover table-condensed">
    <tr>
      <td>Tiempo total</td>
      <td>{{valorTtoc }}</td>
@@ -64,5 +79,9 @@
      <td>{{valorTpac }}</td>
    </tr>
  </table>
+ </div>
+
+ </div>
+ </div>
 </body>
 </html>

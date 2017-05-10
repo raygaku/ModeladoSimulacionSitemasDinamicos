@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title></title>
   <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
   <script src="PEkolmogorov.js"></script>
   <style>
     table{
@@ -19,8 +22,12 @@
    </style>
 </head>
 <body ng-app="app" ng-controller="main">
-<a href="../index.html">Volver</a>
- <table>
+<div class="container-fluid">
+<a class="btn btn-danger" href="../index.html">Volver</a>
+<div class="row">
+
+<div class="col-md-4">
+ <table class="table table-bordered table-hover table-condensed">
   <tr>
       <td>Cantidad de números</td>
       <td><input type="TEXT" ng-model="dataS.numeros"></td>
@@ -31,19 +38,23 @@
   </tr>
 
   <tr>
-    <td><button onclick="location.reload()">Limpiar</button></td>
-    <td><button ng-click="ejecutar()">Generar</button></td>
+    <td><button class="btn btn-warning" onclick="location.reload()">Limpiar</button></td>
+    <td><button class="btn btn-info" ng-click="ejecutar()">Generar</button></td>
   </tr>
  </table>
+</div>
+ </div>
 
+<div class="row">
+<div class="col-md-4">
  <h1>Tabla</h1>
- <table>
+ <table class="table table-bordered table-hover table-condensed">
 
    <tr>
-     <td>i</td>
-     <td>xi</td>
-     <td>F(xi)</td>
-     <td>Dn MAX|F(xi) - xi|</td>
+     <td class="success">i</td>
+     <td class="success">xi</td>
+     <td class="success">F(xi)</td>
+     <td class="success">Dn MAX|F(xi) - xi|</td>
    </tr>
    <tr ng-repeat="renglon in tabla1">
      <td>{{renglon.i}}</td>
@@ -53,15 +64,19 @@
    </tr>
  </table>
 
+</div>
+<div class="col-md-4">
  <div ng-if="habilitarDalfa">
   <p>Por favor introduzca D{{dataS.alfa}}%, {{dataS.numeros}}</p>
   <input type="text" ng-model="dalfa.d">
-  <button ng-click="obtenerResultado()">Enviar</button>
+  <button class="btn btn-default" ng-click="obtenerResultado()">Enviar</button>
  </div>
+</div>
 
+<div class="col-md-4">
  <div ng-if="habilitarResultado">
    <p>El Dn fue {{dnmax}}</p>
-  <table>
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
       <td>Dn < D{{dataS.alfa}}, {{dataS.numeros}}</td>
     </tr>
@@ -72,11 +87,13 @@
       <td>{{ dnmax < dalfa.d }}</td>
     </tr>
     <tr>
-      <td>{{resultadoFinal}}</td>
+      <td class="danger">{{resultadoFinal}}</td>
     </tr>
   </table>
  </div>
+</div>
+ </div>
 
-
+</div>
 </body>
 </html>

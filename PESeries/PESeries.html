@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title></title>
     <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
     <script src="PESeries.js"></script>
   <style>
     table{
@@ -19,9 +22,12 @@
    </style>
   </head>
   <body ng-app="app" ng-controller="main">
-<a href="../index.html">Volver</a>
+  <div class="container-fluid">
+<a class="btn btn-danger" href="../index.html">Volver</a>
 
-  <table>
+<div class="row">
+<div class="col-md-4">
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
       <td>Cantidad de Números</td>
       <td><input type="text" ng-model="dataS.numeros"></td>
@@ -34,46 +40,38 @@
       <td>N</td>
       <td><input type="text" ng-model="dataS.n"></td>
     </tr>
-    <td> <button onclick="location.reload()">Limpiar</button></td>
-    <td><button ng-click="ejecutar()">Generar</button></td>
+    <td> <button class="btn btn-warning" onclick="location.reload()">Limpiar</button></td>
+    <td><button class="btn btn-info" ng-click="ejecutar()">Generar</button></td>
   </table>
+</div>
+  </div>
 
-  <table>
+  <div class="row">
+  <div class="col-md-3">
+
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
-      <td><p>Números Generados</p></td>
+      <td class="success"><p>Números Generados</p></td>
     </tr>
     <tr   ng-repeat="n in listaNumeros">
       <td > {{n}}</td>
     </tr>
-  </table>
-
-  <table>
+  </table class="table table-bordered table-hover table-condensed">
+  </div>
+  <div class="col-md-3">
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
-        <td><p>Parejas</p></td>
+        <td class="success"><p>Parejas</p></td>
     </tr>  
     <tr  ng-repeat="v in listaDeParejas"> 
       <td >{{v}}</td>
     </tr>
   </table>
-<!--
-  <table>
-    <tr ng-repeat="r in tabla track by $index">
-      <td>{{r.cordx}}</td>
-      <td>{{r.cordy}}</td>
-      <td>{{r.punto}}</td>
-    </tr>
-  </table> -->
-  <table>
-    <tr>
-      <td>Intervalos</td>
-    </tr>
-    <tr >
-      <td ng-repeat="int in tablaInterv track by $index">{{int}}</td>
-    </tr>
-    <tr>
-     <td ng-repeat="v in listaFeo track by $index"> {{v}} </td>      
-    </tr>
-  </table>
+  </div>
+
+
+
+  <div class="col-md-3">
 
   <div ng-if="habilitarCaptura">
      <p>El valor de X <span style="vertical-align:super">2</span>
@@ -81,14 +79,15 @@
      <p>Ingresar X<span style="vertical-align:super">2</span>
      <span style="vertical-align:sub">{{dataS.alfa/100}}, {{dataS.n*dataS.n - 1}} </span>
      </p>
-     <input type="TEXT" ng-model="uenter.x20"> <button ng-click="obtenerResultado()">Enviar</button>
+     <input type="TEXT" ng-model="uenter.x20"> <button class="btn btn-default" ng-click="obtenerResultado()">Enviar</button>
 
   </div>
-
+</div>
+<div class="col-md-3">
   <div ng-if="habilitarResultado">
-   <table>
+   <table class="table table-bordered table-hover table-condensed">
      <tr>
-       <td>Resultados</td>
+       <td class="success">Resultados</td>
      </tr>
      <tr>
        <td> <p>X <span style="vertical-align:super">2</span>
@@ -100,11 +99,43 @@
        <td>{{x20Final}} < {{uenter.x20}}  {{x20Final < uenter.x20}} </td>
      </tr>
      <tr>
-       <td>
+       <td class="danger">
     {{resultadoFinal}} 
        </td>
      </tr>
-   </table>  
+   </table> 
+   </div> 
+   </div>
+
+
+  </div>
+<!--
+  <table>
+    <tr ng-repeat="r in tabla track by $index">
+      <td>{{r.cordx}}</td>
+      <td>{{r.cordy}}</td>
+      <td>{{r.punto}}</td>
+    </tr>
+  </table> -->
+  <div class="row">
+  <div class="col-md-12">
+  <table class="table table-bordered table-hover table-condensed">
+    <tr>
+      <td class="success">Intervalos</td>
+    </tr>
+    <tr >
+      <td ng-repeat="int in tablaInterv track by $index">{{int}}</td>
+    </tr>
+    <tr>
+     <td ng-repeat="v in listaFeo track by $index"> {{v}} </td>      
+    </tr>
+  </table>
+  </div>
+
+  </div>
+
+
+
   </div>
   </body>
 </html>

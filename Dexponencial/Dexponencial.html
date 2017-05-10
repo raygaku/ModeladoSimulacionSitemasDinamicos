@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
   <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
   <script src="Dexponencial.js"></script>
   <style>
     table{
@@ -20,8 +23,11 @@
 </head>
 <body ng-app="app" ng-controller="main">
 </body>
-<a href="../index.html">Volver</a>
-  <table>
+<div class="container-fluid">
+<a class="btn btn-danger" href="../index.html">Volver</a>
+<div class="row">
+<div class="col-md-4">
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
       <td>Cantidad de numeros</td>
       <td><input type="TEXT" ng-model="dataS.numeros"></td>
@@ -31,39 +37,54 @@
       <td><input type="TEXT" ng-model="dataS.lambda"></td>
     </tr>
     <tr>
-      <td><button ng-click="ejecutar()" >Enviar</button></td>
-      <td><button onclick="location.reload()">Limpiar</button></td>
+      <td><button class="btn btn-info" ng-click="ejecutar()" >Enviar</button></td>
+      <td><button class="btn btn-warning" onclick="location.reload()">Limpiar</button></td>
     </tr>
   </table>
-
+  </div>
+</div>
   <h1>Resultados</h1>
-  <table>
+
+  <div class="row">
+  <div class="col-md-2">
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
-      <td>Números generados</td>
+      <td class="success" colspan="2">Números generados</td>
     </tr>
     <tr ng-repeat="numero in numerosGenerados track by $index">
       <td>{{$index + 1}}</td>
       <td>{{numero}}</td>
     </tr>
   </table>
+  </div>
 
-  <table>
+
+
+  <div class="col-md-2">
+
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
-      <td>Tiempos por número</td>
+      <td class="success" colspan="2">Tiempos por número</td>
     </tr>
     <tr ng-repeat="num in listaTS track by $index">
       <td> Tiempo {{$index + 1}}</td>
       <td>{{num}}</td>
     </tr>
   </table>
-  <table>
+</div>
+  
+  <div class="col-md-2">
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
-      <td>Tiempo Total</td>
+      <td class="success">Tiempo Total</td>
       <td>{{tiempototal}}</td>
     </tr>
     <tr>
-      <td>Tiempo promedio</td>
+      <td class="success">Tiempo promedio</td>
       <td>{{tiempopromedio}}</td>
     </tr>
   </table>
+</div>
+  </div>
+  </div>
 </html>

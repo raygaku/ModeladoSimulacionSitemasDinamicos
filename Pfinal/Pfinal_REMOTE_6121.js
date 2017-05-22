@@ -121,8 +121,6 @@ angular.module('app', [])
 
         return vacio
    }
-   var probabilidadEncontrarUnLugarDisponiblePromedio
-   var probabilidadEncontrarUnLugarDisponible = 0
    var promedioControl = 0
    var ppromedioA = 0
    var kko=0;
@@ -206,7 +204,7 @@ angular.module('app', [])
         console.log("Tiempo : " + minutos[k])
         $scope.objeto.tiempo = minutos[k]
         var lotesSinClientes
-        var lotesConClientes
+        //var lotesConClientes
         lotesSinClientes = cuentaLotesSinClientes()
 
         console.log("Clientes en los Lotes actualmente: " + cuentaLotesConClientes())
@@ -363,19 +361,9 @@ angular.module('app', [])
         console.log("lotes = " + lotes)
         console.log("")
         console.log("Entran: " + entran)
-        if (ccorridas == 0 && k == 0) {
-            if (entran == 0) {
-                probabilidadEncontrarUnLugarDisponible = 1
-            } else {
-            probabilidadEncontrarUnLugarDisponible += entran / entran
-            }
-        } else {
-            probabilidadEncontrarUnLugarDisponible += entran / 6
-        }
-        
         entranA += entran
         console.log("Entran acumulado: " + entranA)
-        lotesConClientes = cuentaLotesConClientes()
+        //lotesConClientes = cuentaLotesConClientes()
         //if (lotesConClientes == 0) lotesConClientes = 1
         console.log("Espacios ocupados: "  + cuentaLotesConClientes())
         console.log("Tiempo restante de los clientes en los Lotes: " + lotes)
@@ -392,26 +380,14 @@ angular.module('app', [])
         //cicloC = 1
         
         console.log("lotesSinClientes: " + lotesSinClientes)
-        console.log("lotesConClientes: " + lotesConClientes)
+        //console.log("lotesConClientes: " + lotesConClientes)
         //console.log("ppromedio: " + $scope.objeto.pEspaciosDisponibles)
 
         
         
     }
     }
-    var entranPromedio
-    $scope.objetoInfo = {clientesTotalesL:'', clientesTotalesE:'', clientesTotalesNE:'', espaciosDisponiblesT:'', espaciosOcupadosT:'', pClientesP:'', pEspaciosD:'', pEncontrarLugarD:'', promedioEncontrarDisponible: '', pEncontrarLugarDreal:'' }
-    console.log("clientes totales que entraron: "+entranA)
-    entranPromedio = entranA / $scope.dataS.corridas
-    console.log("entranPromedio: "+entranPromedio)
-    //$scope.objetoInfo.pEncontrarLugarDreal = Math.round((1 - ($scope.dataS.vlambda / entranPromedio))*100)
-    $scope.objetoInfo.pEncontrarLugarDreal = Math.round((1 - ($scope.dataS.vlambda / entranPromedio))*100) // La clave está por aqui!!
-    console.log("probabilidad real de encontrar un lugar disponible en el estacionamiento: "+$scope.objetoInfo.pEncontrarLugarDreal)
-    console.log("probabilidad encontrar lugar disponible2: "+probabilidadEncontrarUnLugarDisponible)
-    console.log("corridas: "+corridas)
-    probabilidadEncontrarUnLugarDisponiblePromedio = 1 -(probabilidadEncontrarUnLugarDisponible / (6*corridas))
-    $scope.objetoInfo.promedioEncontrarDisponible = probabilidadEncontrarUnLugarDisponiblePromedio
-    console.log("probabilidad de encontrar un lugar disponible: "+probabilidadEncontrarUnLugarDisponiblePromedio)
+    $scope.objetoInfo = {clientesTotalesL:'', clientesTotalesE:'', clientesTotalesNE:'', espaciosDisponiblesT:'', espaciosOcupadosT:'', pClientesP:'', pEspaciosD:'', pEncontrarLugarD:'' }
     console.log("Clientes totales que llegaron: "+clientesT)
     $scope.objetoInfo.clientesTotalesL = clientesT
     console.log("Clientes totales que entraron: "+entranA)
@@ -422,28 +398,23 @@ angular.module('app', [])
     $scope.objetoInfo.espaciosDisponiblesT = disponiblesA
     console.log("Espacios ocupados totales: "+ocupadosA)
     $scope.objetoInfo.espaciosOcupadosT = ocupadosA
-    console.log("Porcentaje de clientes perdidos: " +((fuera/clientesT)*100))
-    $scope.objetoInfo.pClientesP = ((fuera/clientesT)*100)
+    //console.log("Porcentaje de clientes perdidos: " +((fuera/clientesT)*100))
+    //$scope.objetoInfo.pClientesP = ((fuera/clientesT)*100)
     $scope.objetoInfo.pClientesP = (Math.round((fuera/clientesT)*100) )
-    console.log("Porcentaje promedio de espacios disponibles: "+((disponiblesA/ocupadosA)*100))
-    $scope.objetoInfo.pEspaciosD = ((disponiblesA/ocupadosA)*100)
-    $scope.objetoInfo.pEspaciosD =  (Math.round((disponiblesA/ocupadosA)*100) )
+    //console.log("Porcentaje promedio de espacios disponibles: "+((disponiblesA/ocupadosA)*100))
+    //$scope.objetoInfo.pEspaciosD = ((disponiblesA/ocupadosA)*100)
+    //$scope.objetoInfo.pEspaciosD =  (Math.round((disponiblesA/ocupadosA)*100) )
     ppromedioR = Math.round(ppromedioA / promedioControl)
     console.log("ppromedioR: " + ppromedioR)
     console.log("ppromedioA: " + ppromedioA)
     console.log("promedioControl: "+ promedioControl)
     $scope.objetoInfo.pEspaciosD =  ppromedioR
-    console.log("Probabilidad de encontrar un lugar disponible en el estacionamiento "+((1/6)*100))
-    $scope.objetoInfo.pEncontrarLugarD = ((1/6)*100)
+    //console.log("Probabilidad de encontrar un lugar disponible en el estacionamiento "+((1/6)*100))
+    //$scope.objetoInfo.pEncontrarLugarD = ((1/6)*100)
     $scope.objetoInfo.pEncontrarLugarD = (Math.round((1/6)*100) )
-    $scope.objetos.push($scope.objetoInfo)
+    //$scope.objetos.push($scope.objetoInfo)
     console.log($scope.objetos)
-<<<<<<< HEAD
-    console.log($scope.objetos[k])
-    
-=======
     //console.log($scope.objetos[k])
->>>>>>> 08e0634bf921084f314e6c62dc6457aed1149fda
 
          $scope.verResultados = true;
         var ctx = document.getElementById("myChart");

@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title></title>
   <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
   <script src="gInventado.js"></script>
   <style>
     table{
@@ -19,27 +22,38 @@
   </style>
 </head>
 <body ng-app="app" ng-controller="main">
-<a href="../index.html">Volver</a>
- <table>
+<div class="container-fluid">
+<a class="btn btn-danger" href="../index.html">Volver</a>
+<div class="row">
+<div class="col-md-4">
+ <table class="table table-bordered table-hover table-condensed">
  <tr>
    <td>Números a generar</td>
    <td><input type="TEXT" ng-model="dataEnter.numerosaGenerar"></td>
  </tr>
  <tr>
-   <td> <button onclick="location.reload()">Limpiar</button></td>
-   <td><button ng-click="generar()">Generar</button></td>
+   <td> <button class="btn btn-warning" onclick="location.reload()">Limpiar</button></td>
+   <td><button  class="btn btn-info" ng-click="generar()">Generar</button></td>
  </tr>
  </table>
+</div>
+ </div>
+
+ <div class="row">
+ <div class="col-md-2">
  <h1>Resultados</h1>
- <table>
+ <table class="table table-bordered table-hover table-condensed">
    <tr>
-     <td>i</td>
-     <td>Numero</td>
+     <td class="success">i</td>
+     <td class="success">Numero</td>
    </tr>
    <tr ng-repeat="renglon in tabla track by renglon.i">
      <td>{{renglon.i}}</td>
      <td>{{renglon.numero}}</td>
    </tr>
  </table>
+</div>
+ </div>
+ </div>
 </body>
 </html>

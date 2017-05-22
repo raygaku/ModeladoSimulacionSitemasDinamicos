@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title></title>
   <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
   <script src="PEPromedio.js"></script>
   <style>
     table{
@@ -19,9 +22,13 @@
    </style>
 </head>
 <body ng-app="app" ng-controller="main">
-<a href="../index.html">Volver</a>
+<div class="container-fluid">
+<a class="btn btn-danger" href="../index.html">Volver</a>
 
-  <table>
+<div class="row">
+<div class="col-md-4">
+
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
       <td>Cantidad de Números</td>
       <td><input type="text" ng-model="dataRecibida.numeros"></td>
@@ -30,28 +37,39 @@
       <td>Alfa</td>
       <td><input type="text" ng-model="dataRecibida.alfa"></td>
     </tr>
-    <td> <button onclick="location.reload()">Limpiar</button></td>
-    <td><button ng-click="ejecutar()">Generar</button></td>
+    <td> <button class="btn btn-warning" onclick="location.reload()">Limpiar</button></td>
+    <td><button class="btn btn-info" ng-click="ejecutar()">Generar</button></td>
   </table>
+</div>
+</div>
 
+<div class="row">
+<div class="col-md-4">
   <h1>Números</h1>
-  <table>
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
-      <td><p>Números Generados</p></td>
+      <td class="success"><p>Números Generados</p></td>
     </tr>
     <tr ng-repeat="n in tablaNG">
       <td> {{n.numero}}</td>
     </tr>
   </table>
+</div>
+  <div class="col-md-4">
   <div ng-if="habilitarPregunta">
   <p>El valor de z0 es {{zcero}}</p>
     <p>Por favor ingrese valor de Z{{zalfa}}</p>
     <input type="text" ng-model="zintroducida.z">
-    <button ng-click="obtenerResultado()">Enviar</button>
+    <button class="btn btn-default" ng-click="obtenerResultado()">Enviar</button>
   </div>
-  <h1>Resultados</h1>
+
+  </div>
+  
+
+  <div class="col-md-4">
   <div ng-if="habilitarResultado">
-   <table>
+  <h1>Resultados</h1>
+   <table class="table table-bordered table-hover table-condensed">
      <tr>
        <td><p>Zo < Z{{zalfa}}</p></td>
        <td>{{zcero < zintroducida.z}}</td>
@@ -62,6 +80,9 @@
      </tr>
    </table>
     <p>{{resultadoFinal}}</p>
+  </div>
+  </div>
+</div>
   </div>
 </body>
 </html>

@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title></title>
   <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
   <script src="PEFrecuencias.js"></script>
   <style>
     table{
@@ -20,8 +23,11 @@
 
 </head>
 <body ng-app="app" ng-controller="main">
-<a href="../index.html">Volver</a>
-  <table>
+<div class="container-fluid">
+<a class="btn btn-danger" href="../index.html">Volver</a>
+<div class="row">
+<div class="col-md-4">
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
       <td>Cantidad de números</td>
       <td><input type="TEXT" ng-model="dataS.numeros"></td>
@@ -35,43 +41,49 @@
       <td><input type="TEXT" ng-model="dataS.n"></td>
     </tr>
     <tr>
-      <td> <button onclick="location.reload()">Limpiar</button> </td>
-      <td><button ng-click="generar()">Generar</button></td>
+      <td> <button class="btn btn-warning" onclick="location.reload()">Limpiar</button> </td>
+      <td><button class="btn btn-info" ng-click="generar()">Generar</button></td>
     </tr>
   </table>
-
-  <table>
+  </div>
+  </div>
+<div class="row">
+<div class="col-md-3">
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
-      <td>Números generados</td>
+      <td class="success">Números generados</td>
     </tr>
     <tr ng-repeat="numero in listaNumeros">
       <td>{{numero}}</td>
     </tr>
   </table>
-
-  <table>
+  </div>
+<div class="col-md-3">
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
-      <td>FEi</td>
+      <td class="success">FEi</td>
       <td ng-repeat="f in listaFeo track by $index">{{feivalor}}</td>
     </tr>
     <tr>
-      <td>FEo</td>
+      <td class="success">FEo</td>
       <td ng-repeat="f in listaFeo track by $index">{{f}}</td>
     </tr>
   </table>
-
+  </div>
+<div class="col-md-3">
   <div ng-if="habilitarCaptura">
     <p>Ingrese X <span style="vertical-align:super">2</span>
     <span style="vertical-align:vertical-align:sub">{{dataS.alfa/100}}, {{dataS.n - 1}}</span>
     </p>
     <input type="TEXT" ng-model="xalfa.x">
-    <button ng-click="obtenerResultado()">Enviar</button>
+    <button class="btn btn-default" ng-click="obtenerResultado()">Enviar</button>
   </div>
-
+  </div>
+<div class="col-md-3">
   <div ng-if="habilitarResultado">
-  <table>
+  <table class="table table-bordered table-hover table-condensed">
     <tr>
-      <td>Resultados</td>
+      <td class="success">Resultados</td>
     </tr>
     <tr>
       <td>
@@ -92,9 +104,15 @@
       <td>{{x20Final}} < {{xalfa.x}}</td>
     </tr>
     <tr>
-      <td>{{resutadoFinal}}</td>
+      <td class="danger">{{resutadoFinal}}</td>
     </tr>
   </table>  
+  </div>
+
+
+  </div>
+
+  </div>
   </div>
 </body>
 </html>

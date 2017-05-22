@@ -438,21 +438,15 @@ angular.module('app', [])
     $scope.objetoInfo.pEncontrarLugarD = (Math.round((1/6)*100) )
     $scope.objetos.push($scope.objetoInfo)
     console.log($scope.objetos)
-<<<<<<< HEAD
     console.log($scope.objetos[k])
     
-=======
-    //console.log($scope.objetos[k])
->>>>>>> 08e0634bf921084f314e6c62dc6457aed1149fda
 
          $scope.verResultados = true;
         var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-
         labels: ["Porcentaje de clientes perdidos", "Porcentaje promedio de espacios disponibles", "Probabilidad de encontrar un lugar disponible"],
-
         datasets: [{
             label: '% de probabilidad',
             data: [ $scope.objetoInfo.pClientesP, $scope.objetoInfo.pEspaciosD, $scope.objetoInfo.pEncontrarLugarD],

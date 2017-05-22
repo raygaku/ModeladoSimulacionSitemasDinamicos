@@ -90,6 +90,7 @@
 							<li>Entra el cliente {{j.cliente}}[{{j.num}}] en el lote {{j.lote}} con tiempo de {{j.tiempo}} minutos</li>
 						</ul>
 						<hr>
+
 						<p>Porcentaje de espacios disponibles: {{f.pEspaciosDisponibles}} %</p>
 
 					</div>
@@ -112,7 +113,9 @@
 						<p>Porcentaje promedio de espacios disponibles: {{objetoInfo.pEspaciosD}} %</p>
 						<p>Probabilidad de encontrar un lugar disponible: {{objetoInfo.pEncontrarLugarDreal}} %</p>
 						<hr>
-						<button ng-if="verResultados" class="btn btn-info" data-toggle="modal" data-target="#resultados">Ver graficas</button>
+
+						<button ng-if="verResultados" class="btn btn-info" data-toggle="modal" data-target="#resultados">Ver gráficas</button>
+
     					<button ng-if="verResultados" class="btn btn-warning" onclick="location.reload()">Limpiar</button>
 					</div>
 				</div>
@@ -161,7 +164,9 @@
       <div class="modal-body">
         <label for="">Porcentaje de clientes perdidos</label>
         <p>{{objetoInfo.pClientesP}} %</p>
+
         <label for="">Porcentaje promedio de espacios disponibles</label>
+
         <p>{{objetoInfo.pEspaciosD}} %</p>
         <label>Probabilidad de encontrar un lugar disponible</label>
         <p>{{objetoInfo.pEncontrarLugarD}} %</p>
